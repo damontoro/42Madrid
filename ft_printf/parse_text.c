@@ -1,0 +1,36 @@
+#include "printf.h"
+
+int	parse_char(const char c, va_list list)
+{
+	char	arg;
+
+	if(c != 'c')
+		return -1;
+	arg = va_arg(list, int);
+	ft_putchar_fd(arg, 1);
+	return (1);
+}
+
+int	parse_string(const char c, va_list list)
+{
+	char	*arg;
+
+	if(c != 's')
+		return -1;
+	arg = va_arg(list, char *);
+	if (!arg)
+		arg = "(null)";
+	ft_putstr_fd(arg, 1);
+	return (ft_strlen(arg));
+}
+
+int	parse_per(const char c, va_list list)
+{
+	char	arg;
+
+	arg = '%';
+	if(c != '%')
+		return -1;
+	write(1, &arg, sizeof(char));
+	return (1);
+}
