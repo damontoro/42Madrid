@@ -6,11 +6,24 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:58:34 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/29 08:13:10 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/08/29 09:14:36 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+
+static int	digits(long long int n)
+{
+	int	i;
+
+	i = 1;
+	while (n >= 10)
+	{
+		n = n / 10;
+		++i;
+	}
+	return (i);
+}
 
 int	parse_int(const char c, va_list list)
 {
