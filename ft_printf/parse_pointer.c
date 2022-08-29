@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 07:27:13 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/29 11:24:26 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/08/29 12:00:11 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ char	*ft_uitoh(unsigned long int num)
 	i = 0;
 	while (num >= 16)
 	{
-		ret[i] = "123456789abcdef"[num % 16 - 1];
+		ret[i] = "0123456789abcdef"[num % 16];
 		++i;
 		num = num / 16;
 	}
-	ret[i++] = "123456789abcdef"[num - 1];
+	ret[i++] = "0123456789abcdef"[num];
 	ret[i] = '\0';
 	return (ret);
 }
@@ -46,8 +46,10 @@ int	parse_pointer(const char c, va_list list)
 		return -1;
 	arg = (unsigned long int)va_arg(list, void *);
 	write = ft_uitoh(arg);
+	ft_strrev(write);
 	size = ft_strlen(write);
+	ft_putstr_fd("0x", 1);
 	ft_putstr_fd(write, 1);
 	free(write);
-	return (size);
+	return (size + 2);
 }

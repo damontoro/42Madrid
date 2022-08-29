@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:58:37 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/29 11:23:44 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/08/29 12:00:33 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ int	digs(int num)
 	return (i);
 }
 
-char	*ft_itoh(int num)
+char	*ft_itoh(unsigned int num)
 {
-	char			*ret;
-	int				i;
-	int				sign;
-	long long int	aux;
+	char					*ret;
+	int						i;
+	int						sign;
+	unsigned long long int	aux;
 
 	aux = num;
 	sign = 0;
@@ -43,7 +43,7 @@ char	*ft_itoh(int num)
 	i = 0;
 	while (aux >= 16)
 	{
-		ret[i] = "123456789abcdef"[aux % 16 - 1];
+		ret[i] = "0123456789abcdef"[aux % 16];
 		++i;
 		aux = aux / 16;
 	}
@@ -78,6 +78,7 @@ int	parse_hexa(const char c, va_list list)
 	write = ft_itoh(arg);
 	if (c == 'X')
 		ft_strtoupper(write);
+	ft_strrev(write);
 	size = ft_strlen(write);
 	ft_putstr_fd(write, 1);
 	free(write);

@@ -6,8 +6,7 @@
 
 int main(){
 
-	printf("%u %i %d\n", (unsigned int) -10, ((unsigned int) -10), -10);
-	ft_printf("%u %i %d\n", (unsigned int) -10, ((unsigned int) -10), -10);
-
+	printf("STD: %X\n", -2);
+	ft_printf("Mio: %X\n", -2);
 	return 0;
 }
