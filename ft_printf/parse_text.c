@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:58:31 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/21 20:58:32 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/08/29 07:50:46 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	parse_string(const char c, va_list list)
 int	parse_per(const char c, va_list list)
 {
 	char	arg;
+	(void) list;
 
 	arg = '%';
 	if(c != '%')

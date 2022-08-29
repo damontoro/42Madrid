@@ -6,19 +6,63 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:58:37 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/21 21:04:40 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/08/29 07:56:09 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"printf.h"
 
+int	digs(int num)
+{
+	int	i;
+
+	i = 1;
+	while (num >= 16)
+	{
+		i++;
+		num /= 16;
+	}
+	return (i);
+}
+
 char	*ft_itoh(int num)
 {
-	char	*buffer;
-	char	*ret;
-	
-	buffer = "123456789ABCDEFGH";
-	
+	char			*ret;
+	int				i;
+	int				sign;
+	long long int	aux;
+
+	aux = num;
+	sign = 0;
+	if (aux < 0)
+	{
+		aux = -aux;
+		sign = 1;
+	}
+	ret = malloc(sizeof(char) * (digs(aux) + sign + 1));
+	i = 0;
+	while (aux >= 16)
+	{
+		ret[i] = "123456789abcdef"[aux % 16 - 1];
+		++i;
+		aux = aux / 16;
+	}
+	ret[i++] = "123456789abcdef"[aux - 1];
+	ret[i] = '\0';
+	return (ret);
+}
+
+void	ft_strtoupper(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] >= 'a' && str[i] <= 'z')
+			str[i] -= 32;
+		++i;
+	}
 }
 
 int	parse_hexa(const char c, va_list list)
@@ -30,6 +74,8 @@ int	parse_hexa(const char c, va_list list)
 		return -1;
 	arg = va_arg(list, int);
 	write = ft_itoh(arg);
-	ft_putstr_fd(arg, 1);
-	return (1);
+	if (c == 'X')
+		ft_strtoupper(write);
+	ft_putstr_fd(write, 1);
+	return (ft_strlen(write));
 }
