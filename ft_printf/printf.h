@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:58:29 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/29 08:15:11 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/08/29 08:18:13 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "libft/libft.h"
 
 #define FUN_NMB 7
 
@@ -29,13 +30,8 @@ int		parse_int(const char c, va_list list);
 int		parse_uint(const char c, va_list list);
 int		parse_hexa(const char c, va_list list);
 int		parse_pointer(const char c, va_list list);
-
-void	ft_putchar_fd(char c, int fd);
-void	ft_putnbr_fd(int n, int fd);
+d
 void	ft_putunbr_fd(unsigned int n, int fd);
-void	ft_putstr_fd(char *s, int fd);
-size_t	ft_strlen(const char *s);
-
 
 
 #endif
