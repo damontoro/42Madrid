@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:58:34 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/29 11:04:49 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/08/29 14:10:34 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	parse_int(const char c, va_list list)
 {
 	int	arg;
 	int	sign;
+	long long int	ret;
 
 	if(c != 'i' && c != 'd')
 		return -1;
@@ -37,7 +38,9 @@ int	parse_int(const char c, va_list list)
 	if (arg < 0)
 		sign = 1;
 	ft_putnbr_fd(arg, 1);
-	return (digits(arg) + sign);
+	if	(sign)
+		ret = arg;
+	return (digits(ret) + sign);
 }
 
 int	parse_uint(const char c, va_list list)

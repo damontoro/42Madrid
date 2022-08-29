@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 12:13:22 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/21 11:27:06 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/08/29 13:37:47 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void			ft_swap(char *a, char *b);
 int				ft_atoi(const char *str);
 void			ft_strrev(char *c);
 char			*ft_itoa(int n);
+char			*ft_itoh(unsigned long long int num);
 
 t_list			*ft_lstnew(void *content);
 t_list			*ft_lstlast(t_list *lst);
