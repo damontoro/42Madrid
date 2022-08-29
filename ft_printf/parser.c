@@ -6,11 +6,11 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:58:18 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/29 08:01:40 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/08/29 11:05:05 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 void	ini_arr(int (*fun[FUN_NMB])(char, va_list))
 {

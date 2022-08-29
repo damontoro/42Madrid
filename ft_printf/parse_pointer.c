@@ -6,11 +6,11 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 07:27:13 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/29 07:56:27 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/08/29 11:24:26 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"printf.h"
+#include"ft_printf.h"
 
 char	*ft_uitoh(unsigned long int num)
 {
@@ -40,11 +40,14 @@ int	parse_pointer(const char c, va_list list)
 {
 	unsigned long int	arg;
 	char 				*write;
+	int					size;
 
 	if(c != 'p')
 		return -1;
 	arg = (unsigned long int)va_arg(list, void *);
 	write = ft_uitoh(arg);
+	size = ft_strlen(write);
 	ft_putstr_fd(write, 1);
-	return (ft_strlen(write));
+	free(write);
+	return (size);
 }

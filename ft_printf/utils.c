@@ -6,11 +6,11 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 07:53:11 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/29 08:31:37 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/08/29 11:05:08 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 static void	recursive_magic(int n, int fd)
 {

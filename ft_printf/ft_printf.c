@@ -6,11 +6,11 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:58:20 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/29 09:12:49 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/08/29 11:08:17 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"printf.h"
+#include"ft_printf.h"
 
 int	ft_printf(char const *s, ...)
 {

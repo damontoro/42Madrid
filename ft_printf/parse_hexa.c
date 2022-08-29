@@ -6,11 +6,11 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:58:37 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/29 07:56:09 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/08/29 11:23:44 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"printf.h"
+#include"ft_printf.h"
 
 int	digs(int num)
 {
@@ -67,8 +67,10 @@ void	ft_strtoupper(char *str)
 
 int	parse_hexa(const char c, va_list list)
 {
-	int	arg;
-	char *write;
+	int		arg;
+	char	*write;
+	int		size;
+
 
 	if(c != 'X' && c != 'x')
 		return -1;
@@ -76,6 +78,8 @@ int	parse_hexa(const char c, va_list list)
 	write = ft_itoh(arg);
 	if (c == 'X')
 		ft_strtoupper(write);
+	size = ft_strlen(write);
 	ft_putstr_fd(write, 1);
-	return (ft_strlen(write));
+	free(write);
+	return (size);
 }

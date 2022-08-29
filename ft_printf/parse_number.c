@@ -6,11 +6,11 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:58:34 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/29 10:58:18 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/08/29 11:04:49 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 static int	digits(long long int n)
 {
