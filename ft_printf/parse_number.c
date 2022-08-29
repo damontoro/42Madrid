@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:58:34 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/29 07:39:06 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/08/29 08:13:10 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ int	parse_int(const char c, va_list list)
 
 int	parse_uint(const char c, va_list list)
 {
-	int	arg;
+	unsigned int	arg;
 
 	if(c != 'u')
 		return -1;
 	arg = va_arg(list, unsigned int);
-	ft_putnbr_fd(arg, 1);
+	ft_putunbr_fd(arg, 1);
 	return (1);
 }

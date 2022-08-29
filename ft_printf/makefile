@@ -6,7 +6,7 @@
 #    By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 07:03:20 by dmontoro          #+#    #+#              #
-#    Updated: 2022/08/09 12:30:32 by dmontoro         ###   ########.fr        #
+#    Updated: 2022/08/29 07:44:53 by dmontoro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ RM	= rm -f
 
 AR = ar -rcs
 
-SRCS	= 	main.c parser.c parse_hexa.c parse_number.c parse_text.c
+SRCS	= 	main.c parser.c parse_hexa.c parse_number.c parse_text.c parse_pointer.c
 
 OBJ	= ${SRCS:.c=.o}
 
