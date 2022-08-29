@@ -21,8 +21,9 @@
 
 int main(){
 
-	int s = printf("%d",INT_MIN);
-	int m = ft_printf("%d",INT_MIN);
+	int s = printf("%d", INT_MIN);
+	printf("\n");
+	int m = ft_printf("%d", INT_MIN);
 
 	printf("\n%i, %i\n", s, m);
 	return 0;

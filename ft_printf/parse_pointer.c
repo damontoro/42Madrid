@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 07:27:13 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/29 13:02:00 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/08/29 17:15:01 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	parse_pointer(const char c, va_list list)
 	if(c != 'p')
 		return -1;
 	arg = (unsigned long int)va_arg(list, void *);
-	write = ft_itoh(arg);
+	write = ft_uitoh(arg);
 	ft_strrev(write);
 	size = ft_strlen(write);
 	ft_putstr_fd("0x", 1);

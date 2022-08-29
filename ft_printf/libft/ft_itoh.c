@@ -5,8 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/29 17:14:37 by dmontoro          #+#    #+#             */
+/*   Updated: 2022/08/29 18:42:44 by dmontoro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoh.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 13:00:59 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/29 13:37:35 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/08/29 17:10:21 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +37,12 @@ static int	digs(unsigned long long int num)
 	return (i);
 }
 
-char	*ft_itoh(unsigned long long int num)
+char	*ft_itoh(unsigned int num)
 {
 	char					*ret;
 	int						i;
 	int						sign;
-	unsigned long long int	aux;
+	long long int	aux;
 
 	aux = num;
 	sign = 0;
@@ -47,7 +59,7 @@ char	*ft_itoh(unsigned long long int num)
 		++i;
 		aux = aux / 16;
 	}
-	ret[i++] = "123456789abcdef"[aux - 1];
+	ret[i++] = "0123456789abcdef"[aux];
 	ret[i] = '\0';
 	return (ret);
 }
