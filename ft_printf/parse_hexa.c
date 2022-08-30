@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:58:37 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/29 17:10:37 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/08/30 18:38:11 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	parse_hexa(const char c, va_list list)
 	char	*write;
 	int		size;
 
-	if(c != 'X' && c != 'x')
-		return -1;
+	if (c != 'X' && c != 'x')
+		return (-1);
 	arg = va_arg(list, int);
 	write = ft_itoh(arg);
 	if (c == 'X')

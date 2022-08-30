@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:58:34 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/30 17:34:15 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/08/30 18:38:53 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static int	digits(long long int n)
 
 int	parse_int(const char c, va_list list)
 {
-	int	arg;
-	int	sign;
+	int				arg;
+	int				sign;
 	long long int	ret;
 
-	if(c != 'i' && c != 'd')
-		return -1;
+	if (c != 'i' && c != 'd')
+		return (-1);
 	sign = 0;
 	arg = va_arg(list, int);
 	ret = arg;
@@ -49,8 +49,8 @@ int	parse_uint(const char c, va_list list)
 {
 	unsigned long int	arg;
 
-	if(c != 'u')
-		return -1;
+	if (c != 'u')
+		return (-1);
 	arg = va_arg(list, unsigned int);
 	ft_putunbr_fd(arg, 1);
 	return (digits(arg));

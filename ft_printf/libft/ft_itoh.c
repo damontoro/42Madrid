@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:14:37 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/29 18:42:44 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/08/30 18:33:15 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ static int	digs(unsigned long long int num)
 
 char	*ft_itoh(unsigned int num)
 {
-	char					*ret;
-	int						i;
-	int						sign;
+	char			*ret;
+	int				i;
+	int				sign;
 	long long int	aux;
 
 	aux = num;
