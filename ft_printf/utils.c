@@ -6,13 +6,13 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 07:53:11 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/29 11:05:08 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/08/30 17:34:14 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	recursive_magic(int n, int fd)
+static void	recursive_magic(unsigned int n, int fd)
 {
 	if (n < 10)
 		ft_putchar_fd(n + '0', fd);

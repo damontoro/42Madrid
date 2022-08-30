@@ -21,9 +21,9 @@
 
 int main(){
 
-	int s = printf("%d", INT_MIN);
+	int s = printf("Suy: %u %u", LONG_MAX, LONG_MIN);
 	printf("\n");
-	int m = ft_printf("%d", INT_MIN);
+	int m = ft_printf("Mio: %u %u", LONG_MAX, LONG_MIN);
 
 	printf("\n%i, %i\n", s, m);
 	return 0;
