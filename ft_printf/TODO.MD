@@ -1,3 +1,0 @@
--> cambiar los returns para que devuelvan el tamaño de lo escrito
-	- cambiar los returns de los int
--> meter itoh en libft
