@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/08 12:09:08 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/09/04 16:41:32 by dmontoro         ###   ########.fr       */
+/*   Created: 2022/08/30 19:11:18 by dmontoro          #+#    #+#             */
+/*   Updated: 2022/08/30 19:16:28 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-void	*ft_calloc(size_t n, size_t size)
-{
-	char	*ret;
+# include<unistd.h>
 
-	if (!n || (SIZE_MAX / n > size))
-		return (NULL);
-	ret = malloc(n * size);
-	if (!ret)
-		return (NULL);
-	ft_bzero(ret, n * size);
-	return (ret);
-}
+char *get_next_line(int fd);
+
+
+#endif
