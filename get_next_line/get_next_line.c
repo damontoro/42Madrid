@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 19:11:31 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/30 19:16:43 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/09/22 18:34:24 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,24 @@ char	*load_saved(char saved[BUFFER_SIZE])
 	ft_strlcpy(aux, saved, i + 1);
 	override_buffer(saved, i);
 	return (aux);
+}
+
+char	*load_buffer(int fd, char *saved)
+{
+	char	*ret;
+	int		rd;
+
+	if(!saved)
+		saved = ft_strdup("");
+	while (!ft_strchr(saved, '\n'))
+	{
+		ret = (char *)malloc(BUFFER_SIZE + 1);
+		if (!ret)
+			return (NULL);
+		r
+
+	}
+	
 }
 
 char	*read_file(int fd, char *saved)
