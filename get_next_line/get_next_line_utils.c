@@ -22,21 +22,6 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	i;
-
-	i = 0;
-	while (dstsize != 0 && i < dstsize - 1 && src[i])
-	{
-		dst[i] = src[i];
-		++i;
-	}
-	if (i < dstsize)
-		dst[i] = '\0';
-	return (ft_strlen(src));
-}
-
 char	*ft_strdup(const char *s1)
 {
 	char	*new;
@@ -53,21 +38,6 @@ char	*ft_strdup(const char *s1)
 	}
 	new[i] = '\0';
 	return (new);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	int	i;
-	int size = ft_strlen(s);
-
-	i = 0;
-	while (i < size)
-	{
-		if (s[i] == (char) c)
-			return ((char *) s + i);
-		++i;
-	}
-	return (NULL);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)

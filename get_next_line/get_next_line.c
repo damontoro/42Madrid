@@ -12,110 +12,83 @@
 
 #include "get_next_line.h"
 
-static int linelen(char *a)
+static int line_len(char *a)
 {
 	int	i;
 
 	i = 0;
 	while (a[i] != '\0' && a[i] != '\n')
 		i++;
-	return (i);
+	return (i + 1);
 }
 
-void override_buffer(char saved[BUFFER_SIZE], int pos)
+static char	*override_buffer(char *saved)
 {
-	int	i;
+	char	*ret;
+	size_t	pos;
+	size_t	size;
+	size_t	i;
 
 	i = 0;
-	while (saved[pos] != '\0')
-	{
-		saved[i] = saved[pos];
+	size = ft_strlen(saved);
+	pos = line_len(saved);
+	ret = (char *)malloc((size - pos + 1) * sizeof(char));
+	if (!ret)
+		return(NULL);
+	while (saved[pos]){
+		ret[i] = saved[pos];
 		i++;
 		pos++;
 	}
-	while (i < pos)
-	{
-		saved[i] = '\0';
-		i++;
-	}
+	return (ret);
 }
 
-char	*load_saved(char saved[BUFFER_SIZE])
-{
-	char	*aux;
-	int		i;
-	int		fin;
-
-	i = 0;
-	fin = 0;
-	aux = NULL;
-	while (saved[i] && !fin)
-	{
-		if(saved[i] == '\n')
-			fin = 1;
-		i++;
-	}
-	aux = malloc((i + 1) * sizeof(char));
-	ft_strlcpy(aux, saved, i + 1);
-	override_buffer(saved, i);
-	return (aux);
-}
-
-char	*load_buffer(int fd, char *saved)
+static char	*load_saved(int fd, char *saved)
 {
 	char	*ret;
-	int		rd;
+	int		count;
 
+	count = 1;
 	if(!saved)
 		saved = ft_strdup("");
-	while (!ft_strchr(saved, '\n'))
+	while (ft_strchr(saved, '\n') == NULL && count > 0)
 	{
 		ret = (char *)malloc(BUFFER_SIZE + 1);
 		if (!ret)
 			return (NULL);
-		r
-
+		count = read(fd, ret, BUFFER_SIZE);
+		if (count < 0){
+			free(ret);
+			return (NULL);
+		}
+		saved = ft_strjoin(ret, saved);
+		free(ret);
 	}
-	
+	return (saved);
 }
 
-char	*read_file(int fd, char *saved)
+static char	*read_line(char *saved)
 {
-	char	*buffer;
+	int		size;
 	char	*ret;
-	int		i;
-	int		count;
-	int		j;
-	char 	*found;
 
-	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if(!buffer)
-		return NULL;
-	while (!found && (count = read(fd, buffer, BUFFER_SIZE)) > 0)
-	{
-		found = ft_strchr(buffer, '\n');
-		ret = ft_strjoin(ret, ft_substr(buffer, 0, linelen(buffer)));
-		i = 0; 
-		while (found && found[i] != '\0'){
-			saved[j] = found[i];
-			j++; 
-			i++;
-		}
-	}
-	free(buffer);
-	if(count < 0)
+	size = line_len(saved);
+	ret = malloc((size + 1) * sizeof(char));
+	if (!ret)
 		return (NULL);
-	return ret;
+	ret = ft_substr(saved, 0, size);
+	return (ret);
 }
 
 char *get_next_line(int fd)
 {
-	static char	saved[BUFFER_SIZE];
-	char	*buffer;
+	static char	*saved;
 	char	*ret;
 
-	ret = load_saved(saved);
-	if(!ft_strchr(ret, '\n'))
-		ret = read_file(fd, saved);
+	saved = load_saved(fd, saved);
+	if (!saved)
+		return (NULL);
+	ret = read_line(saved);
+	saved = override_buffer(saved);
 	return (ret);
 }
