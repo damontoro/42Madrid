@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 19:11:31 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/09/22 18:34:24 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/09/29 20:23:33 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ static int line_len(char *a)
 	i = 0;
 	while (a[i] != '\0' && a[i] != '\n')
 		i++;
-	return (i + 1);
+	if (a[i] == '\n')
+		i++;
+	return (i);
 }
 
 static char	*override_buffer(char *saved)
@@ -30,9 +32,14 @@ static char	*override_buffer(char *saved)
 	size_t	i;
 
 	i = 0;
-	size = ft_strlen(saved);
 	pos = line_len(saved);
-	ret = (char *)malloc((size - pos + 1) * sizeof(char));
+	if (!saved[pos])
+	{
+		free(saved);
+		return (NULL);
+	}
+	size = ft_strlen(saved);
+	ret = (char *)malloc((size - pos + 2) * sizeof(char));
 	if (!ret)
 		return(NULL);
 	while (saved[pos]){
@@ -40,6 +47,8 @@ static char	*override_buffer(char *saved)
 		i++;
 		pos++;
 	}
+	ret[i] = '\0';
+	free(saved);
 	return (ret);
 }
 
@@ -49,41 +58,53 @@ static char	*load_saved(int fd, char *saved)
 	int		count;
 
 	count = 1;
-	if(!saved)
-		saved = ft_strdup("");
-	while (ft_strchr(saved, '\n') == NULL && count > 0)
+	ret = (char *)malloc(BUFFER_SIZE + 1);
+	if (!ret)
+		return (NULL);
+	while (ft_strchr(saved, '\n') == NULL && count != 0)
 	{
-		ret = (char *)malloc(BUFFER_SIZE + 1);
-		if (!ret)
-			return (NULL);
 		count = read(fd, ret, BUFFER_SIZE);
-		if (count < 0){
+		if (count == -1)
+		{
 			free(ret);
 			return (NULL);
 		}
-		saved = ft_strjoin(ret, saved);
-		free(ret);
+		ret[count] = '\0';
+		if (!saved)
+			saved = ft_strdup(ret);
+		else
+			saved = ft_strjoin(saved, ret);
 	}
+	free(ret);
 	return (saved);
 }
 
 static char	*read_line(char *saved)
 {
-	int		size;
+	size_t	size;
+	size_t	i;
 	char	*ret;
 
+	i = 0;
+	if (!saved[i])
+		return (NULL);
 	size = line_len(saved);
-	ret = malloc((size + 1) * sizeof(char));
+	ret = (char *)malloc(sizeof(char) * (size + 1));
 	if (!ret)
 		return (NULL);
-	ret = ft_substr(saved, 0, size);
+	while (i < size)
+	{
+		ret[i] = saved[i];
+		i++;
+	}
+	ret[i] = '\0';
 	return (ret);
 }
 
 char *get_next_line(int fd)
 {
 	static char	*saved;
-	char	*ret;
+	char		*ret;
 
 	saved = load_saved(fd, saved);
 	if (!saved)

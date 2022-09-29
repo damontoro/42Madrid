@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 19:11:33 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/30 19:16:40 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/09/29 19:26:39 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*ft_strdup(const char *s1)
 	return (new);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, const char *s2)
 {
 	char	*ret;
 	int		i;
@@ -65,6 +65,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	ret[i] = '\0';
+	free((void *)s1);
 	return (ret);
 }
 
@@ -98,6 +99,8 @@ char	*ft_strchr(const char *s, int c)
 	size_t	i;
 
 	i = 0;
+	if (!s)
+		return (NULL);
 	while (i < ft_strlen(s))
 	{
 		if (s[i] == (char) c)
