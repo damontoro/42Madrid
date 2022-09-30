@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 19:11:33 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/09/29 20:24:01 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/09/30 06:58:12 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,39 +69,16 @@ char	*ft_strjoin(char *s1, const char *s2)
 	return (ret);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*ret;
-	size_t	i;
-
-	i = 0;
-	if (!s)
-		return (NULL);
-	if (start >= ft_strlen(s))
-		return (ft_strdup(""));
-	if (len > ft_strlen(s) - start)
-		len = ft_strlen(s) - start;
-	ret = malloc(len + 1);
-	if (!ret || !s)
-		return (NULL);
-	while (s[start] && i < len)
-	{
-		ret[i] = s [start];
-		start++;
-		i++;
-	}
-	ret[i] = '\0';
-	return (ret);
-}
-
 char	*ft_strchr(const char *s, int c)
 {
 	size_t	i;
+	size_t	size;
 
 	i = 0;
 	if (!s)
 		return (NULL);
-	while (i < ft_strlen(s))
+	size = ft_strlen(s);
+	while (i < size)
 	{
 		if (s[i] == (char) c)
 			return ((char *) s + i);
