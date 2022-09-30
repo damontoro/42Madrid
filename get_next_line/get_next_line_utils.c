@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 19:11:33 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/09/30 06:58:59 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/09/30 07:13:51 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*ft_strchr(const char *s, int c)
 {
 	size_t	i;
 	size_t	size;
-	
+
 	i = 0;
 	if (!s)
 		return (NULL);

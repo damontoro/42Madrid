@@ -6,13 +6,13 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 19:11:31 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/09/29 20:24:47 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/09/30 07:13:16 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-static int line_len(char *a)
+static int	line_len(char *a)
 {
 	int	i;
 
@@ -41,8 +41,9 @@ static char	*override_buffer(char *saved)
 	size = ft_strlen(saved);
 	ret = (char *)malloc((size - pos + 2) * sizeof(char));
 	if (!ret)
-		return(NULL);
-	while (saved[pos]){
+		return (NULL);
+	while (saved[pos])
+	{
 		ret[i] = saved[pos];
 		i++;
 		pos++;
@@ -104,7 +105,7 @@ static char	*read_line(char *saved)
 char	*get_next_line(int fd)
 {
 	static char	*saved[OPEN_MAX];
-	char	*ret;
+	char		*ret;
 
 	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
