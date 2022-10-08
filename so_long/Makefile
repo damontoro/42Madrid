@@ -6,7 +6,7 @@
 #    By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 07:03:20 by dmontoro          #+#    #+#              #
-#    Updated: 2022/10/08 11:35:04 by dmontoro         ###   ########.fr        #
+#    Updated: 2022/10/08 11:56:30 by dmontoro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ all:		${NAME}
 clean:
 				${RM} ${OBJ} ${OBJB}
 				make clean -C ${MLXDIR}
+				make clean -C ${LIBFTDIR}
 
 fclean: 	clean
 				${RM} ${NAME}
