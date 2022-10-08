@@ -2,6 +2,7 @@
 	"files.associations": {
 		"ft_printf.h": "c",
 		"printf.h": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"mlx.h": "c"
 	}
 }

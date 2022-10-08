@@ -1,19 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/08 11:22:44 by dmontoro          #+#    #+#             */
+/*   Updated: 2022/10/08 11:36:23 by dmontoro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
-
-# include "./mlx/mlx.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <errno.h>
-
-
-void	*mlx_init();
-void	*mlx_new_window(void *mlx_ptr, int size_x, int size_y, char *title);
-int	mlx_clear_window(void *mlx_ptr, void *win_ptr);
-int	mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
-
-
-# endif
+#include "libs/mlx/mlx.h"
+#include "libs/libft/libft.h"
+#include <stdio.h>

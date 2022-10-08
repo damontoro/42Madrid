@@ -6,11 +6,11 @@
 #    By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 07:03:20 by dmontoro          #+#    #+#              #
-#    Updated: 2022/08/21 17:20:33 by dmontoro         ###   ########.fr        #
+#    Updated: 2022/10/08 11:34:13 by dmontoro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= libft.a
+NAME	= liblibft.a
 
 CC	= gcc
 
