@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 19:11:18 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/09/30 07:12:47 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/10/08 11:09:15 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include<unistd.h>
 # include<stdlib.h>
+# include<limits.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1

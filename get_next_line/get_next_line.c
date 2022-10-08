@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 19:11:31 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/09/30 07:12:12 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/10/08 11:08:37 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,13 +104,15 @@ static char	*read_line(char *saved)
 
 char	*get_next_line(int fd)
 {
-	static char	*saved;
+	static char	*saved[OPEN_MAX];
 	char		*ret;
 
-	saved = load_saved(fd, saved);
-	if (!saved)
+	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
-	ret = read_line(saved);
-	saved = override_buffer(saved);
+	saved[fd] = load_saved(fd, saved[fd]);
+	if (!saved[fd])
+		return (NULL);
+	ret = read_line(saved[fd]);
+	saved[fd] = override_buffer(saved[fd]);
 	return (ret);
 }
