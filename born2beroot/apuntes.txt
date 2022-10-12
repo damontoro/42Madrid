@@ -1,0 +1,88 @@
+Root -> @Administrador42
+Usuario -> @Souls5854
+Cifrado -> @cifrado123
+
+￼
+
+CENTOS TIENE UN DISTINTO TIPO DE PAQUETES A DEBIAN, POR ESO CENTOS USA YUM 
+DEBIAN USA APT
+
+Crear grupos: addgroup dmontoro42
+
+Cambiar contraseña: 
+passwd
+Sudo passwd
+
+Status:
+Sudo service ufw status
+Sudo service ssh status
+
+Gente de grupos:
+	getent group sudo
+	getent group dmontoro42
+
+Crear usuario:
+	sudo adduser _nombre_
+	
+
+Cat /etc/group 
+Cat /etc/passwd
+
+Sudo add group _newuser_ evaluating
+Getent group evaluating
+
+Hostname
+Sudo nano /etc/hostname
+Sudo reboot 
+Hostname
+
+Particiones lsblk
+
+Apt -qq list sudo
+Sudo add group _user_ sudo
+
+Cat /etc/sudoers-d/sudo_config
+
+Sudo su 
+Cd /var/log/sudo
+Ls
+
+
+Sudo service ufw status
+
+Ssh dmontoro@localhost -p 4242
+
+Sudo ufw allow _nuevo puerto_
+Sudo uff delete _numero del puerto_
+
+Sudo service ssh status
+
+Systemctl status cron
+
+Sudo su
+Crontab -e
+
+Sudo service crontab stop
+
+SCRIPT:
+
+Uname -> Toda la información del sistema linux posible
+
+/proc/cpuinfo/ -> información del procesador
+
+Free -m para ver la memoria libre/usada en megabytes
+Free normal para ver la memoria normal en kb
+
+Df espacio total y libre de nuestro sistema
+
+Top para información de los procesos de nuestro sistema
+
+Who nos dice quien está, cuando se conecto y su nivel de permisos
+
+Lsblk (list block) (creo) para listar todos los dispositivos de bloque disponibles
+
+Hostname now da la info del host, con el flag -I nos da su ip
+
+Ip nos da información de red, Link nos da la información de las interfaces de red y show es para mostrarlo
+
+Lvrename para cambiar el nombre de un volumen de la LVM -> cambiar /etc/fstab para actualizar el nombre de la partición en el arranque
