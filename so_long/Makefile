@@ -30,9 +30,15 @@ MLXNAME = libmlx.a
 
 MLXFLAGS = -framework OpenGL -framework AppKit
 
-MLXPATH = ${MLXDIR}${MLXNAME}
+MLX_LINUX = mlx_Linux
 
-LIBFT = ft
+MLXDIR_LINUX = ./libs/mlx-linux/
+
+MLXNAME_LINUX = libmlx_Linux.a
+
+MLXPATH_LINUX = ${MLXDIR_LINUX}${MLXNAME_LINUX}
+
+LIBFT = libft
 
 LIBFTDIR = ./libs/libft/
 
@@ -40,33 +46,45 @@ LIBFTNAME = libft.a
 
 LIBFTPATH = ${LIBFTDIR}${LIBFTNAME}
 
+LINUX = so_long_linux
+
 .c.o:
 		${CC} ${FLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJ} ${MLXPATH} ${LIBFTPATH}
-				${CC} ${CFLAGS} -L${MLXDIR} -L${LIBFTDIR} -l${MLX} -l${LIBFT} ${MLXFLAGS} ${OBJ} -o ${NAME}
+				${CC} ${CFLAGS}  ${OBJ} -L${MLXDIR} -L${LIBFTDIR} -l${MLX} -l${LIBFT} ${MLXFLAGS} -o ${NAME}
+
+${LINUX}: ${OBJ} ${MLXPATH_LINUX} ${LIBFTPATH}
+				${CC} ${CFLAGS} ${OBJ} -L${MLXDIR_LINUX} -L${LIBFTDIR} -l${MLX_LINUX} -lXext -lX11 -l${LIBFT} ${MLXFLAGS_LINUX} -o ${NAME}
+
+${MLXPATH_LINUX}:
+				@make -C ${MLXDIR_LINUX}
 
 ${MLXPATH}:
 				@make -C ${MLXDIR}
 
 ${LIBFTPATH}:
-				@MAKE -C ${LIBFTDIR}
+				@make -C ${LIBFTDIR}
 
 bonus:		all ${OBJB}
 				@make OBJ="${OBJB}"
 
 all:		${NAME}
 
+linux : ${LINUX}
+
 clean:
 				${RM} ${OBJ} ${OBJB}
 				make clean -C ${MLXDIR}
 				make clean -C ${LIBFTDIR}
+				make clean -C ${MLXDIR_LINUX}
 
 fclean: 	clean
+				make fclean -C ${LIBFTDIR}
 				${RM} ${NAME}
 
 re: 		fclean all
 
 rebonus:	fclean bonus
 
-.PHONY:		all bonus clean fclean re rebonus
+.PHONY:		all bonus clean fclean re rebonus linux

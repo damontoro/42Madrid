@@ -1,0 +1,3 @@
+[submodule "so_long/libs/mlx-linux"]
+	path = so_long/libs/mlx-linux
+	url = https://github.com/ttshivhula/minilibx

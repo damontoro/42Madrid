@@ -10,6 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libs/mlx/mlx.h"
+#include "libs/mlx-linux/mlx.h"
 #include "libs/libft/libft.h"
 #include <stdio.h>
