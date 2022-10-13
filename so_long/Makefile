@@ -34,7 +34,7 @@ MLX_LINUX = mlx_Linux
 
 MLXDIR_LINUX = ./libs/mlx-linux/
 
-MLXNAME_LINUX = libmlx_Linux.a
+MLXNAME_LINUX = libmlx.a
 
 MLXPATH_LINUX = ${MLXDIR_LINUX}${MLXNAME_LINUX}
 
@@ -71,7 +71,7 @@ bonus:		all ${OBJB}
 
 all:		${NAME}
 
-linux : ${LINUX}
+linux: ${LINUX}
 
 clean:
 				${RM} ${OBJ} ${OBJB}
