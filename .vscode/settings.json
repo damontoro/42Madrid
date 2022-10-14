@@ -3,6 +3,9 @@
 		"ft_printf.h": "c",
 		"printf.h": "c",
 		"stdlib.h": "c",
-		"mlx.h": "c"
+		"mlx.h": "c",
+		"get_next_line.h": "c",
+		"view.h": "c",
+		"so_long.h": "c"
 	}
 }

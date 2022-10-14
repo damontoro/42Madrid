@@ -12,4 +12,9 @@
 
 #include "libs/mlx-linux/mlx.h"
 #include "libs/libft/libft.h"
+#include "utils/get_next_line.h"
+#include "view/view.h"
+#include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>

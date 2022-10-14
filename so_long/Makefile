@@ -14,11 +14,13 @@ NAME	= so_long
 
 CC	= gcc
 
-FLAGS	= #-Wall -Werror -Wextra -g3 -O0 -fsanitize=address -D BUFFER_SISE=42
+CFLAGS	= -g3 -D BUFFER_SIZE=42 #-Wall -Werror -Wextra -g3 -O0 -fsanitize=address -D BUFFER_SIZE=42
 
 RM	= rm -f
 
-SRCS	= so_long.c\
+SRCS	= so_long.c \
+			view/mapParser.c\
+			utils/get_next_line.c utils/get_next_line_utils.c
 
 OBJ	= ${SRCS:.c=.o}
 
@@ -55,7 +57,7 @@ ${NAME}:	${OBJ} ${MLXPATH} ${LIBFTPATH}
 				${CC} ${CFLAGS}  ${OBJ} -L${MLXDIR} -L${LIBFTDIR} -l${MLX} -l${LIBFT} ${MLXFLAGS} -o ${NAME}
 
 ${LINUX}: ${OBJ} ${MLXPATH_LINUX} ${LIBFTPATH}
-				${CC} ${CFLAGS} ${OBJ} -L${MLXDIR_LINUX} -L${LIBFTDIR} -l${MLX_LINUX} -lXext -lX11 -l${LIBFT} ${MLXFLAGS_LINUX} -o ${NAME}
+				${CC} ${CFLAGS} ${OBJ} -L${MLXDIR_LINUX} -L${LIBFTDIR} -l${MLX_LINUX} -lm -lXext -lX11 -l${LIBFT} ${MLXFLAGS_LINUX} -o ${NAME}
 
 ${MLXPATH_LINUX}:
 				@make -C ${MLXDIR_LINUX}
@@ -64,7 +66,7 @@ ${MLXPATH}:
 				@make -C ${MLXDIR}
 
 ${LIBFTPATH}:
-				@make -C ${LIBFTDIR}
+				@make bonus -C ${LIBFTDIR}
 
 bonus:		all ${OBJB}
 				@make OBJ="${OBJB}"
