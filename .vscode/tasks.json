@@ -10,6 +10,7 @@
 				"-D BUFFER_SIZE=42",
 				"*.c",
 				"utils/*.c",
+				"view/*.c",
 				"-L./libs/mlx-linux/ -L./libs/libft/ -lmlx_Linux -lm -lXext -lX11 -llibft",
 				"-o",
 				"${fileDirname}/salida"

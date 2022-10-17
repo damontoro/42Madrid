@@ -1,77 +1,119 @@
 #include "view.h"
 
-char	*parseMap(char *fileName)
+static int	checkContentLine(char *line, int pos, int length)
 {
-	char **map;
-	int fd;
-	
-	if(ft_strncmp(ft_strrchr(fileName,'.'), ".ber", 4))
-	{
-		perror("Error\nInvalid file extension");
-		exit(EXIT_FAILURE);
-	}
-	fd = open(fileName, O_RDONLY);
-	if(fd < 0)
-	{
-		perror("Error\nInvalid file");
-		exit(EXIT_FAILURE);
-	}
-	checkMapForm(fd);
-	//checkMapContent();
-
-	return (ft_strdup("todo bien"));
-}
-
-static int checkBorderLine(char	*line)
-{
-	int i;
+	int	i;
+	int	size;
 
 	i = 0;
-	while(line[i] && line[i] != '\n')
+	size = ft_strlen(line);
+	while (i < size - 1)
 	{
-		if(line[i] != '1'){
+		if((pos == 0 || pos == length) && line[i] != '1')
 			return (0);
-		}
+		if (!ft_strchr(MAP_CHARS, line[i]))
+			return (0);
 		i++;
 	}
+	if(line[size - 1] != '\n')
+		return (0);
 	return (1);
 }
 
-void	checkMapForm(int fd)
+int	checkMapForm(int fd)
 {
 	int	i;
+	int	size;
 	char	*line;
 
 	i = 0;
-	while((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while(line != NULL)
 	{
-		if(i == 0){
-			if(!checkBorderLine(line))
-			{
-				perror("Error1: map is not closed\n");
-				exit(EXIT_FAILURE);
-			}
-		}
-		if (!line[0] == '1' || !line[ft_strlen(line) - 1] == '1')
+		if (i == 0)
+			size = ft_strlen(line);
+		else if (size != ft_strlen(line))
+			ft_error("Error\nMap is not rectangular");
+		if (!checkContentLine(line, i, 0))
+			ft_error("Error\nInvalid character in map");
+		if (line[0] != '1' || line[size - 2] != '1')
+			ft_error("Error\nMap is not closed");
+		free(line);
+		line = get_next_line(fd);
+		i++;
+	}
+	return (i);
+}
+
+char	**loadMap(int fd, int size, int *width)
+{
+	char	**map;
+	int		i;
+
+	i = 0;
+	map = (char **)malloc(sizeof(char *) * (size + 1));
+	if (!map)
+		ft_error("Error\nProblems with memory allocation");
+	while (i < size)
+	{
+		map[i] = get_next_line(fd);
+		if (!map[i])
+			ft_error("Error: Problem while loading the map");
+		i++;
+	}
+	map[size] = NULL;
+	*width = ft_strlen(map[0]);
+	return (map);
+}
+
+void checkMapContent(t_map map)
+{
+	int	i;
+	int j;
+	t_content content;
+
+	ft_bzero(&content, sizeof(t_content));
+	i = 0; 
+	while (i < map.length)
+	{
+		j = 0;
+		while (j < map.width)
 		{
-			perror("Error2: map is not closed\n");
-			exit(EXIT_FAILURE);
+			if (map.map[i][j] == 'P')
+				content.player++;
+			else if (map.map[i][j] == 'C')
+				content.collectibles++;
+			else if (map.map[i][j] == 'E')
+				content.exit++;
+			else if (map.map[i][j] == 'X')
+				content.enemies++;
+			j++;
 		}
 		i++;
 	}
+	if (content.player != 1 || content.exit != 1 || content.collectibles < 1)
+		ft_error("Error\nInvalid map content");
 }
 
-char	**loadMap(char *fileName)
+t_map	parseMap(char *fileName)
 {
-	int		fd;
-	char	**map;
-	char	*line;
-
+	int fd;
+	t_map map;
+	
+	if(ft_strncmp(ft_strrchr(fileName,'.'), ".ber", 4))
+		ft_error("Error\nInvalid file extension");
 	fd = open(fileName, O_RDONLY);
-	if (fd > 0)
-	{
-		line = get_next_line(fd);
-	}
+	if(fd < 0)
+		ft_error("Error:\nInvalid file");
+	map.length = checkMapForm(fd);
+	close(fd);
+	fd = open(fileName, O_RDONLY);
+	if(fd < 0)
+		ft_error("Error:\nInvalid file");
+	map.map = loadMap(fd, map.length, &map.width);
+	if (!checkContentLine(map.map[map.length - 1], map.length, map.length))
+			ft_error("Error\nMap is not closed");
+	checkMapContent(map);
 	close(fd);
 	return (map);
 }

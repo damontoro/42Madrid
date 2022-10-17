@@ -8,8 +8,12 @@ int main(int argc, char *argv[])
 	//ini = mlx_init();
 	//window = mlx_new_window(ini, 600, 400, "Primera ventana");
 	//printf("%d\n", ft_strncmp(ft_strrchr(argv[1],'.'), ".ber", 4));
-
-	printf("%s\n", parseMap(argv[1]));
+	t_map mapa = parseMap(argv[1]);
+	for(int i = 0; i < mapa.length; i++){
+		printf("%s", mapa.map[i]);
+		free(mapa.map[i]);
+	}
+	free(mapa.map);
 	//mlx_loop(ini);
 	
 

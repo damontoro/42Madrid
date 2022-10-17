@@ -5,12 +5,13 @@
 # include<stdlib.h>
 # include<unistd.h>
 # include<fcntl.h>
+#include "../types.h"
 # include"../libs/libft/libft.h"
-# include"../utils/get_next_line.h"
+# include"../utils/utils.h"
 
 
-char	*parseMap(char *fileName);
-void	checkMapForm(int fd);
-char	**loadMap(char *fileName);
+t_map	parseMap(char *fileName);
+int		checkMapForm(int fd);
+char	**loadMap(int fd, int size, int *width);
 
 # endif
