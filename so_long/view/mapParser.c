@@ -62,7 +62,7 @@ char	**loadMap(int fd, int size, int *width)
 		i++;
 	}
 	map[size] = NULL;
-	*width = ft_strlen(map[0]);
+	*width = ft_strlen(map[0]) - 1;
 	return (map);
 }
 
@@ -74,7 +74,7 @@ void checkMapContent(t_map map)
 
 	ft_bzero(&content, sizeof(t_content));
 	i = 0; 
-	while (i < map.length)
+	while (i < map.height)
 	{
 		j = 0;
 		while (j < map.width)
@@ -105,13 +105,13 @@ t_map	parseMap(char *fileName)
 	fd = open(fileName, O_RDONLY);
 	if(fd < 0)
 		ft_error("Error:\nInvalid file");
-	map.length = checkMapForm(fd);
+	map.height = checkMapForm(fd);
 	close(fd);
 	fd = open(fileName, O_RDONLY);
 	if(fd < 0)
 		ft_error("Error:\nInvalid file");
-	map.map = loadMap(fd, map.length, &map.width);
-	if (!checkContentLine(map.map[map.length - 1], map.length, map.length))
+	map.map = loadMap(fd, map.height, &map.width);
+	if (!checkContentLine(map.map[map.height - 1], map.height, map.height))
 			ft_error("Error\nMap is not closed");
 	checkMapContent(map);
 	close(fd);
