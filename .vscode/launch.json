@@ -20,7 +20,7 @@
 		},
 		{
 			"name": "gcc - Make y depurar el archivo activo",
-			"type": "lldb",
+			"type": "cppdbg",
 			"request": "launch",
 			"program": "${fileDirname}/so_long",
 			"args": ["maps/pruebas.ber"],

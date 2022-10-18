@@ -25,7 +25,6 @@ typedef struct s_game {
 	
 }	t_game;
 
-
 typedef struct s_sprites {
 
 	void	*wall;
@@ -33,7 +32,7 @@ typedef struct s_sprites {
 	void	*exit;
 	void	*enemy;
 	void	*player;
-	void	*collectible;
+	void	*item;
 	
 }	t_sprites;
 

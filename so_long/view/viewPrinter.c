@@ -14,7 +14,7 @@ void printMap(t_map *map, t_sprites *sprites, t_vars *vars){
 			else if (map->map[i][j] == 'X')
 				mlx_put_image_to_window(vars->mlx, vars->win, sprites->enemy, j * 32, i * 32);
 			else if (map->map[i][j] == 'C')
-				mlx_put_image_to_window(vars->mlx, vars->win, sprites->collectible, j * 32, i * 32);
+				mlx_put_image_to_window(vars->mlx, vars->win, sprites->item, j * 32, i * 32);
 		}
 	}
 }
