@@ -17,11 +17,8 @@
 #include "libs/libft/libft.h"
 #include "utils/utils.h"
 #include "view/view.h"
-#include "types.h"
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
+#include "defs.h"
+
 
 
 

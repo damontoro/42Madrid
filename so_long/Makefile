@@ -19,7 +19,6 @@ CFLAGS	= -g -O0 -D BUFFER_SIZE=42 -Wall -Werror -Wextra -fsanitize=address
 RM	= rm -f
 
 SRCS	= so_long.c \
-			controller.c \
 			view/mapParser.c view/viewPrinter.c \
 			utils/get_next_line.c utils/get_next_line_utils.c utils/utils.c
 
@@ -74,7 +73,7 @@ bonus:		all ${OBJB}
 
 all:		${NAME}
 
-linux: ${LINUX}
+linux:		${LINUX}
 
 clean:
 				${RM} ${OBJ} ${OBJB}

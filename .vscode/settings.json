@@ -8,6 +8,9 @@
 		"view.h": "c",
 		"so_long.h": "c",
 		"utils.h": "c",
-		"types.h": "c"
-	}
+		"types.h": "c",
+		"defs.h": "c",
+		"libft.h": "c"
+	},
+	"C_Cpp.errorSquiggles": "Enabled"
 }

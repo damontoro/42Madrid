@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "../functions.h"
 
 size_t	ft_strlen_gnl(const char *s)
 {

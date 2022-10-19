@@ -1,4 +1,4 @@
-#include "view.h"
+#include "../functions.h"
 
 static int	checkContentLine(char *line, int pos, int length)
 {
