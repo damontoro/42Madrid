@@ -14,7 +14,7 @@ NAME	= so_long
 
 CC	= gcc
 
-CFLAGS	= -g -O0 -D BUFFER_SIZE=42 #s-Wall -Werror -Wextra -fsanitize=address
+CFLAGS	= -g -O0 -D BUFFER_SIZE=42 -Wall -Werror -Wextra -fsanitize=address
 
 RM	= rm -f
 

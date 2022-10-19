@@ -3,6 +3,10 @@
 
 # include "libs/libft/libft.h"
 
+#ifndef ANIMATION_FRAMES
+# define ANIMATION_FRAMES 2
+#endif
+
 typedef struct	s_vars {
 	void	*mlx;
 	void	*win;
@@ -16,12 +20,18 @@ typedef struct s_map {
 
 }	t_map;
 
+typedef struct s_entity {
+	int x;
+	int y;
+	void	*sprites[ANIMATION_FRAMES];
+	int		animFrame;
+} t_entity;
+
 typedef struct s_game {
 
-	t_map	map;
-	t_list	collectibles;
-	t_list enemy;
-	//t_entity player;
+	t_map		map;
+	t_list		enemy;
+	t_entity	player;
 	
 }	t_game;
 
@@ -30,8 +40,6 @@ typedef struct s_sprites {
 	void	*wall;
 	void	*floor;
 	void	*exit;
-	void	*enemy;
-	void	*player;
 	void	*item;
 	
 }	t_sprites;
@@ -39,7 +47,7 @@ typedef struct s_sprites {
 typedef struct s_controller {
 
 	t_vars	vars;
-	t_game	*game;
+	t_game	game;
 	t_sprites *sprites;
 	
 }	t_controller;

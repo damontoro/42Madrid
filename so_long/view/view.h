@@ -14,6 +14,6 @@
 t_map	parseMap(char *fileName);
 int		checkMapForm(int fd);
 char	**loadMap(int fd, int size, int *width);
-void	printMap(t_map *map, t_sprites *sprites, t_vars *vars);
+void	printMap(t_controller con);
 
 # endif
