@@ -1,32 +1,5 @@
 #include "functions.h"
 
-int move(t_controller *con, int x, int y)
-{
-	if (CHECK_BOUNDARY(con->game.playerX + x, con->game.playerY + y, con->game.map))
-	{
-		if (con->game.map.map[con->game.playerY + y][con->game.playerX + x] == '1')
-			return (0);
-		if (con->game.map.map[con->game.playerY + y][con->game.playerX + x] == 'E')
-			if (con->game.collectedItems < con->game.totalItems)
-				return (0);
-			else
-				con->game.win = 1;
-		if (con->game.map.map[con->game.playerY + y][con->game.playerX + x] == 'X')
-				con->game.win = -1;
-		if(con->game.map.map[con->game.playerY + y][con->game.playerX + x] == 'C')
-			con->game.collectedItems++;
-		con->game.map.map[con->game.playerY][con->game.playerX] = '0';
-		con->game.playerX += x;
-		con->game.playerY += y;
-		con->game.map.map[con->game.playerY][con->game.playerX] = 'P';
-		mlx_put_image_to_window(con->vars.mlx, con->vars.win, con->sprites->floor, (con->game.playerX - x) * 32, (con->game.playerY - y) * 32);
-		mlx_put_image_to_window(con->vars.mlx, con->vars.win, 
-							con->sprites->player.sprites[con->sprites->player.currFrame], con->game.playerX * 32, con->game.playerY * 32);
-		return (1);
-	}
-	return (0);
-}
-
 int	key_hook(int keycode, t_controller *con)
 {
 	char	*str;
@@ -53,19 +26,6 @@ int	key_hook(int keycode, t_controller *con)
 	printf("KeyPressed: %d\n", keycode);
 	printf("MoveCount: %d\n", con->game.moveCount);
 	return (0);
-}
-
-void updatePlayer(t_controller con)
-{
-	if (con.sprites->player.timeOut > TIMEOUT){
-		con.sprites->player.currFrame++;
-		con.sprites->player.currFrame %= ANIMATION_FRAMES;
-		mlx_put_image_to_window(con.vars.mlx, con.vars.win, 
-							con.sprites->player.sprites[con.sprites->player.currFrame], con.game.playerX * 32, con.game.playerY * 32);
-		con.sprites->player.timeOut = 0;
-	}
-	else
-		con.sprites->player.timeOut++;
 }
 
 int loop_hook(t_controller *con)
@@ -105,12 +65,11 @@ t_sprites *loadSprites(t_controller *con)
 int main(int argc, char *argv[])
 {
 	t_controller con;
+
+	if (argc != 2)
+		ft_error("Invalid number of arguments");
 	ft_bzero(&con, sizeof(t_controller));
-	ft_bzero(&con.game, sizeof(t_game));
-	con.game.map = parseMap(argv[1]);
-	con.game.playerX = 1;
-	con.game.playerY = 3;
-	con.game.totalItems = 2;
+	loadGameData(&con.game, argv[1]);
 	con.vars.mlx = mlx_init();
 	con.vars.win = mlx_new_window(con.vars.mlx, con.game.map.width * 32, con.game.map.height * 32, "so_long");
 	con.sprites = loadSprites(&con);
@@ -119,6 +78,5 @@ int main(int argc, char *argv[])
 	mlx_loop_hook(con.vars.mlx, loop_hook, &con);
 	mlx_key_hook(con.vars.win, key_hook, &con);
 	mlx_loop(con.vars.mlx);
-	
 	return (0);
 }

@@ -35,12 +35,18 @@
 #endif
 
 #ifndef TIMEOUT
-# define TIMEOUT 10000
+# define TIMEOUT 5000
 #endif
 
 #ifndef CHECK_BOUNDARY
 # define CHECK_BOUNDARY(x, y, map) (x >= 0 && x < map.width && y >= 0 && y < map.height)
 #endif
+
+typedef struct s_coords
+{
+	int	x;
+	int	y;
+}	t_coords;
 
 typedef struct	s_vars {
 	void	*mlx;
@@ -73,8 +79,7 @@ typedef struct s_game {
 	int		moveCount;
 	int		win;
 
-	int		playerX;
-	int		playerY;
+	t_coords player;
 	
 }	t_game;
 

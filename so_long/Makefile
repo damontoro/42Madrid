@@ -19,7 +19,7 @@ CFLAGS	= -g -O0 -D BUFFER_SIZE=42 -Wall -Werror -Wextra -fsanitize=address
 RM	= rm -f
 
 SRCS	= so_long.c \
-			view/mapParser.c view/viewPrinter.c \
+			view/mapParser.c view/auxFunctions.c \
 			utils/get_next_line.c utils/get_next_line_utils.c utils/utils.c
 
 OBJ	= ${SRCS:.c=.o}

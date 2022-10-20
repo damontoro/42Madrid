@@ -15,8 +15,6 @@
 
 #include "libs/mlx-linux/mlx.h"
 #include "libs/libft/libft.h"
-#include "utils/utils.h"
-#include "view/view.h"
 #include "defs.h"
 
 
