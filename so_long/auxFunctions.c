@@ -1,4 +1,4 @@
-#include "../functions.h"
+#include "functions.h"
 
 int move(t_controller *con, int x, int y)
 {
@@ -84,7 +84,7 @@ void loadGameData(t_game *game, char *filename)
 				game->player.y = i;
 			}
 			else if (game->map.map[i][j] == 'C')
-				ft_lstadd_back(&game->items, ft_lstnew(createCoords(i, j)));
+				ft_lstadd_back(&game->items, ft_lstnew(createCoords(j, i)));
 			j++;
 		}
 		i++;

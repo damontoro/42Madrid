@@ -20,7 +20,7 @@ RM	= rm -f
 
 SRCS	= so_long.c \
 			algorithms.c auxFunctions2.c \
-			view/mapParser.c view/auxFunctions.c \
+			mapParser.c auxFunctions.c \
 			utils/get_next_line.c utils/get_next_line_utils.c utils/utils.c
 
 OBJ	= ${SRCS:.c=.o}
