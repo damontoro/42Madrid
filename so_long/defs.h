@@ -72,7 +72,8 @@ typedef struct s_animation {
 typedef struct s_game {
 
 	t_map	map;
-	t_list	enemy;
+	t_list	*enemy;
+	t_list	*items;
 
 	int		totalItems;
 	int		collectedItems;

@@ -40,6 +40,31 @@ void updatePlayer(t_controller con)
 		con.sprites->player.timeOut++;
 }
 
+void checkPath(t_game *game)
+{
+	int	*dist;
+	int	*visited;
+	int	*queue;
+	int	**adj;
+	t_list *aux;
+
+	dist = ft_calloc((game->map.height * game->map.width), sizeof(int));
+	visited = ft_calloc((game->map.height * game->map.width), sizeof(int));
+	queue = ft_calloc((game->map.height * game->map.width), sizeof(int));
+	if (!dist || !visited || !queue)
+		ft_error("Error allocating memory");
+	adj = loadAdj(&game->map);
+	bfs(game->player.x + game->player.y * game->map.width, dist, visited, adj, queue);
+	aux = game->items;
+	while (aux != NULL)
+	{
+		if (dist[((t_coords *)aux->content)->x + ((t_coords *)aux->content)->y * game->map.width] == 0)
+			ft_error("Map is not solvable");
+		aux = aux->next;
+	}
+	freeBfsData(game, dist, visited, queue, adj);
+}
+
 void loadGameData(t_game *game, char *filename)
 {
 	int	i;
@@ -59,11 +84,13 @@ void loadGameData(t_game *game, char *filename)
 				game->player.y = i;
 			}
 			else if (game->map.map[i][j] == 'C')
-				game->totalItems++;
+				ft_lstadd_back(&game->items, ft_lstnew(createCoords(i, j)));
 			j++;
 		}
 		i++;
 	}
+	game->totalItems = ft_lstsize(game->items);
+	checkPath(game);
 }
 
 void printMap(t_controller con){
