@@ -10,7 +10,8 @@
 		"utils.h": "c",
 		"types.h": "c",
 		"defs.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"functions.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "Enabled"
 }

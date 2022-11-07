@@ -45,6 +45,6 @@ int tsp(int pos, int visitados, int V, int **dist, int **memo) {
 	int res = 1000000000; // INF
 	for (int i = 1; i < V; ++i)
 		if (!(visitados & (1 << i))) // no hemos visitado vértice i
-	res = min(res, dist[pos][i] + tsp(i, visitados | (1 << i), V, dist, memo));
+	res = fmin(res, dist[pos][i] + tsp(i, visitados | (1 << i), V, dist, memo));
 	return memo[pos][visitados] = res;
 }

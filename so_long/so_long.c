@@ -55,7 +55,7 @@ t_sprites *loadSprites(t_controller *con)
 	ret->wall = mlx_xpm_file_to_image(con->vars.mlx, "./assets/wall.xpm", &x, &x);
 	ret->exit = mlx_xpm_file_to_image(con->vars.mlx, "./assets/exit.xpm", &x, &x);
 	ret->floor = mlx_xpm_file_to_image(con->vars.mlx, "./assets/floor.xpm", &x, &x);
-	ret->item = mlx_xpm_file_to_image(con->vars.mlx, "./assets/placeholder.xpm", &x, &x);
+	ret->item = mlx_xpm_file_to_image(con->vars.mlx, "./assets/polla.xpm", &x, &x);
 	ft_bzero(ret->player.sprites, sizeof(ret->player.sprites));
 	ret->player.sprites[0] = mlx_xpm_file_to_image(con->vars.mlx, "./assets/jiggly.xpm", &x, &x);
 	ret->player.sprites[1] = mlx_xpm_file_to_image(con->vars.mlx, "./assets/jiggly2.xpm", &x, &x);
