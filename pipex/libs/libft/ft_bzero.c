@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/08 11:22:44 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/10/08 11:36:23 by dmontoro         ###   ########.fr       */
+/*   Created: 2022/06/14 11:42:20 by dmontoro          #+#    #+#             */
+/*   Updated: 2022/08/21 12:23:20 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include"libft.h"
 
-#include "libs/mlx-linux/mlx.h"
-#include "libs/libft/libft.h"
-#include "defs.h"
+void	ft_bzero(void *s, size_t n)
+{
+	size_t	i;
 
-
-
-
-#endif
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char *)s)[i] = '\0';
+		i++;
+	}
+}

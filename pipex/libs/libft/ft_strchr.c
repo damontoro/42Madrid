@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/08 11:22:44 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/10/08 11:36:23 by dmontoro         ###   ########.fr       */
+/*   Created: 2022/06/14 07:37:11 by dmontoro          #+#    #+#             */
+/*   Updated: 2022/08/09 11:03:54 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include"libft.h"
 
-#include "libs/mlx-linux/mlx.h"
-#include "libs/libft/libft.h"
-#include "defs.h"
+char	*ft_strchr(const char *s, int c)
+{
+	int	i;
 
-
-
-
-#endif
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+		{
+			return ((char *)s + i);
+		}
+		++i;
+	}
+	if (s[i] == (char) c)
+		return ((char *)s + i);
+	return (0);
+}

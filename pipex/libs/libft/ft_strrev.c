@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/08 11:22:44 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/10/08 11:36:23 by dmontoro         ###   ########.fr       */
+/*   Created: 2022/08/21 16:53:23 by dmontoro          #+#    #+#             */
+/*   Updated: 2022/08/21 16:53:24 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include"libft.h"
 
-#include "libs/mlx-linux/mlx.h"
-#include "libs/libft/libft.h"
-#include "defs.h"
+void	ft_strrev(char *s)
+{
+	size_t	i;
 
-
-
-
-#endif
+	i = 0;
+	while (i < ft_strlen(s) / 2)
+	{
+		ft_swap(&s[i], &s[ft_strlen(s) - i - 1]);
+		i++;
+	}
+}

@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/08 11:22:44 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/10/08 11:36:23 by dmontoro         ###   ########.fr       */
+/*   Created: 2022/08/21 11:23:55 by dmontoro          #+#    #+#             */
+/*   Updated: 2022/08/21 11:24:59 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include"libft.h"
 
-#include "libs/mlx-linux/mlx.h"
-#include "libs/libft/libft.h"
-#include "defs.h"
+t_list	*ft_lstnew(void	*content)
+{
+	t_list	*ret;
 
-
-
-
-#endif
+	ret = (t_list *) malloc(sizeof(t_list));
+	if (!ret)
+		return (NULL);
+	ret->content = content;
+	ret->next = NULL;
+	return (ret);
+}

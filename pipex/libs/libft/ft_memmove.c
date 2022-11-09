@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/08 11:22:44 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/10/08 11:36:23 by dmontoro         ###   ########.fr       */
+/*   Created: 2022/06/14 12:15:07 by dmontoro          #+#    #+#             */
+/*   Updated: 2022/08/21 10:53:37 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include"libft.h"
 
-#include "libs/mlx-linux/mlx.h"
-#include "libs/libft/libft.h"
-#include "defs.h"
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	char	*tmp;
+	char	*dest;
 
-
-
-
-#endif
+	tmp = (char *)src;
+	dest = (char *)dst;
+	if (tmp < dest)
+	{
+		while (len--)
+			dest[len] = tmp[len];
+	}
+	else
+		ft_memcpy(dest, tmp, len);
+	return (dst);
+}

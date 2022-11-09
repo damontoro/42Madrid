@@ -16,6 +16,19 @@
 			"externalConsole": false,
 			"MIMode": "lldb",
 			"preLaunchTask": "C/C++: gcc-9 build active file"
+		},
+		{
+			"name": "gcc - Make y depurar el archivo activo",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${fileDirname}/pipex",
+			"args": [],
+			"stopAtEntry": true,
+			"cwd": "${fileDirname}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "C/C++: make active file"
 		}
 	]
 }
