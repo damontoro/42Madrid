@@ -6,7 +6,7 @@
 #    By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 07:03:20 by dmontoro          #+#    #+#              #
-#    Updated: 2022/11/29 09:19:23 by dmontoro         ###   ########.fr        #
+#    Updated: 2022/11/29 11:46:04 by dmontoro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRCS	= so_long.c \
 			utils/get_next_line.c utils/get_next_line_utils.c utils/utils.c
 
 BNS_SRCS	= bonus/so_long_bonus.c \
-			bonus/algorithms_bonus.c bonus/auxFunctions2_bonus.c \
+			bonus/algorithms_bonus.c bonus/auxFunctions2_bonus.c bonus/auxFunctions3_bonus.c\
 			bonus/mapParser_bonus.c bonus/auxFunctions_bonus.c \
 			utils/get_next_line.c utils/get_next_line_utils.c utils/utils.c
 

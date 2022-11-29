@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 11:19:00 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/11/29 11:24:01 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/11/29 11:55:28 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	key_hook(int keycode, t_controller *con)
 		str = ft_itoa(con->game.move_count);
 		mlx_put_image_to_window(con->vars.mlx, \
 		con->vars.win, con->sprites->wall, 0, 0);
-		mlx_string_put(con->vars.mlx, con->vars.win, 5, 5, 0x00FFFFFF, str);
+		mlx_string_put(con->vars.mlx, con->vars.win, 0, 5, 0x00FFFFFF, str);
 		free(str);
 	}
 	printf("Move Count: %d\n", con->game.move_count);
@@ -56,7 +56,6 @@ int	loop_hook(t_controller *con)
 		exit(0);
 	}
 	update_player(*con);
-	updateEnemies();
 	return (0);
 }
 
@@ -79,6 +78,11 @@ t_sprites	*load_sprites(t_controller *con)
 	"./assets/jiggly.xpm", &x, &x);
 	ret->player.sprites[1] = mlx_xpm_file_to_image(con->vars.mlx, \
 	"./assets/jiggly2.xpm", &x, &x);
+	ft_bzero(ret->enemy.sprites, sizeof(ret->enemy.sprites));
+	ret->enemy.sprites[0] = mlx_xpm_file_to_image(con->vars.mlx, \
+	"./assets/enemy.xpm", &x, &x);
+	ret->enemy.sprites[1] = mlx_xpm_file_to_image(con->vars.mlx, \
+	"./assets/enemy.xpm", &x, &x);
 	return (ret);
 }
 
