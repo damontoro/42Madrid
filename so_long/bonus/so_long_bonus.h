@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 08:43:50 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/11/29 08:44:02 by dmontoro         ###   ########.fr       */
+/*   Created: 2022/10/08 11:22:44 by dmontoro          #+#    #+#             */
+/*   Updated: 2022/11/29 08:45:55 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../functions.h"
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS__H
 
-void	ft_error(char *str)
-{
-	ft_putstr_fd(str, 2);
-	exit(EXIT_FAILURE);
-}
+# include "functions_bonus.h"
+# include "defs_bonus.h"
+
+#endif

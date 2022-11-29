@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defs.h                                             :+:      :+:    :+:   */
+/*   defs_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 08:47:31 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/11/29 09:44:58 by dmontoro         ###   ########.fr       */
+/*   Created: 2022/11/29 11:22:38 by dmontoro          #+#    #+#             */
+/*   Updated: 2022/11/29 11:23:42 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFS_H
-# define DEFS_H
+#ifndef DEFS_BONUS_H
+# define DEFS_BONUS_H
 
-# include "libs/libft/libft.h"
+# include "../libs/libft/libft.h"
 # include <mlx.h>
 # include <math.h>
 # include <stdio.h>
@@ -29,8 +29,8 @@
 #  define OPEN_MAX 256
 # endif
 
-# ifndef MAP_CHARS
-#  define MAP_CHARS "10CEP"
+# ifndef MAP_CHARS_BONUS
+#  define MAP_CHARS "10CEPX"
 # endif
 
 # ifndef MAX_HEIGHT
@@ -68,6 +68,7 @@ typedef struct s_map {
 	char	**map;
 	int		height;
 	int		width;
+
 }	t_map;
 
 typedef struct s_animation {
@@ -92,6 +93,7 @@ typedef struct s_sprites {
 	void		*exit;
 	void		*item;
 	t_animation	player;
+	t_animation	enemy;
 }	t_sprites;
 
 typedef struct s_controller {
@@ -112,6 +114,7 @@ typedef struct s_content {
 	int	collectibles;
 	int	player;
 	int	exit;
+	int	enemies;
 }	t_content;
 
 #endif

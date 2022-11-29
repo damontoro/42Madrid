@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mapParser.c                                        :+:      :+:    :+:   */
+/*   mapParser_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 08:47:51 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/11/29 09:48:45 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/11/29 11:15:28 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "functions.h"
+#include "so_long_bonus.h"
 
 static int	check_content_line(char *line, int pos, int length)
 {
@@ -97,6 +97,8 @@ void	check_map_content(t_map map)
 				content.collectibles++;
 			else if (map.map[i][j] == 'E')
 				content.exit++;
+			else if (map.map[i][j] == 'X')
+				content.enemies++;
 			j++;
 		}
 		i++;

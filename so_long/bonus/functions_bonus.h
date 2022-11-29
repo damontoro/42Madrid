@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functions.h                                        :+:      :+:    :+:   */
+/*   functions_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 08:47:37 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/11/29 09:47:31 by dmontoro         ###   ########.fr       */
+/*   Created: 2022/11/29 11:23:46 by dmontoro          #+#    #+#             */
+/*   Updated: 2022/11/29 11:23:46 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FUNCTIONS_H
-# define FUNCTIONS_H
+#ifndef FUNCTIONS_BONUS_H
+# define FUNCTIONS_BONUS_H
 
-# include "./defs.h"
+# include"./defs_bonus.h"
 
 void		bfs(t_bfs_aux data);
 int			check_boundary(int x, int y, t_map map);
+int			check_movable(t_map *map, int i, int j);
 t_coords	*create_coords(int x, int y);
 int			**load_adj(t_map *map);
 void		free_bfs_data(t_game *game, t_bfs_aux d);

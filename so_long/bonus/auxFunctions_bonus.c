@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   auxFunctions.c                                     :+:      :+:    :+:   */
+/*   auxFunctions_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 08:47:25 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/11/29 09:48:21 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/11/29 11:22:23 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "functions.h"
+#include "so_long_bonus.h"
 
 int	move(t_controller *con, int x, int y)
 {
@@ -20,6 +20,9 @@ int	move(t_controller *con, int x, int y)
 		if (con->game.map.map[con->game.player.y + y] \
 		[con->game.player.x + x] == '1')
 			return (0);
+		else if (con->game.map.map[con->game.player.y + y] \
+		[con->game.player.x + x] == 'X')
+			con->game.win = -1;
 		else if (con->game.map.map[con->game.player.y + y] \
 		[con->game.player.x + x] == 'E')
 		{
@@ -124,6 +127,8 @@ void	print_map(t_controller con)
 				print_sprite(con, con.sprites->player.sprites[0], i, j);
 			else if (con.game.map.map[i][j] == 'E')
 				print_sprite(con, con.sprites->exit, i, j);
+			else if (con.game.map.map[i][j] == 'X')
+				print_sprite(con, con.sprites->enemy.sprites[0], i, j);
 			else if (con.game.map.map[i][j] == 'C')
 				print_sprite(con, con.sprites->item, i, j);
 			j++;

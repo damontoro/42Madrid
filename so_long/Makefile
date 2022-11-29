@@ -6,7 +6,7 @@
 #    By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 07:03:20 by dmontoro          #+#    #+#              #
-#    Updated: 2022/10/08 11:56:30 by dmontoro         ###   ########.fr        #
+#    Updated: 2022/11/29 09:19:23 by dmontoro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,75 +19,48 @@ CFLAGS	= -g -O0 -D BUFFER_SIZE=42 -Wall -Werror -Wextra -fsanitize=address
 RM	= rm -f
 
 SRCS	= so_long.c \
-			algorithms.c auxFunctions2.c \
+			algorithms.c auxFunctions2.c auxFunctions3.c\
 			mapParser.c auxFunctions.c \
 			utils/get_next_line.c utils/get_next_line_utils.c utils/utils.c
 
-OBJ	= ${SRCS:.c=.o}
+BNS_SRCS	= bonus/so_long_bonus.c \
+			bonus/algorithms_bonus.c bonus/auxFunctions2_bonus.c \
+			bonus/mapParser_bonus.c bonus/auxFunctions_bonus.c \
+			utils/get_next_line.c utils/get_next_line_utils.c utils/utils.c
 
-MLX = mlx
+BNS_OBJS	= $(BNS_SRCS:.c=.o)
+OBJS    =   $(SRCS:.c=.o)
+LIBFT   =   ./libs/libft/libft.a
 
-MLXDIR = ./libs/mlx/
+BONUS = .
 
-MLXNAME = libmlx.a
+all: $(NAME)
 
-MLXFLAGS = -framework OpenGL -framework AppKit
+bonus: ${BONUS}
 
-MLX_LINUX = mlx_Linux
+%.o: %.c
+	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
-MLXDIR_LINUX = ./libs/mlx-linux/
+$(NAME): $(OBJS) $(INCL) $(LIBFT)
+	$(CC) $(CFLAGS) $(SRCS) -Iincludes $(LIBFT) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
-MLXNAME_LINUX = libmlx.a
+$(BONUS): $(BNS_OBJS) $(INCL) $(LIBFT)
+	$(CC) $(CFLAGS) $(BNS_SRCS) -Iincludes $(LIBFT) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
-MLXPATH_LINUX = ${MLXDIR_LINUX}${MLXNAME_LINUX}
+$(LIBFT):
+	@make bonus -C ./libs/libft/
 
-LIBFT = libft
-
-LIBFTDIR = ./libs/libft/
-
-LIBFTNAME = libft.a
-
-LIBFTPATH = ${LIBFTDIR}${LIBFTNAME}
-
-LINUX = so_long_linux
-
-.c.o:
-		${CC} ${FLAGS} -c $< -o ${<:.c=.o}
-
-${NAME}:	${OBJ} ${MLXPATH} ${LIBFTPATH}
-				${CC} ${CFLAGS}  ${OBJ} -L${MLXDIR} -L${LIBFTDIR} -l${MLX} -l${LIBFT} ${MLXFLAGS} -o ${NAME}
-
-${LINUX}: ${OBJ} ${MLXPATH_LINUX} ${LIBFTPATH}
-				${CC} ${CFLAGS} ${OBJ} -L${MLXDIR_LINUX} -L${LIBFTDIR} -l${MLX_LINUX} -lm -lXext -lX11 -l${LIBFT} ${MLXFLAGS_LINUX} -o ${NAME}
-
-${MLXPATH_LINUX}:
-				@make -C ${MLXDIR_LINUX}
-
-${MLXPATH}:
-				@make -C ${MLXDIR}
-
-${LIBFTPATH}:
-				@make bonus -C ${LIBFTDIR}
-
-bonus:		all ${OBJB}
-				@make OBJ="${OBJB}"
-
-all:		${NAME}
-
-linux:		${LINUX}
+$(MLX):
+	@make -C ./mlx/
 
 clean:
-				${RM} ${OBJ} ${OBJB}
-				make clean -C ${MLXDIR}
-				make clean -C ${LIBFTDIR}
-				make clean -C ${MLXDIR_LINUX}
+	@rm -rf $(OBJS)
+	@rm -rf $(BNS_OBJS)
+	@echo "cleaning .o files"
+	@make clean -C ./libs/libft/
 
-fclean: 	clean
-				make fclean -C ${LIBFTDIR}
-				${RM} ${NAME}
+fclean: clean
+	@make fclean -C ./libs/libft/
+	@rm -rf $(NAME)
 
-re: 		fclean all
-
-rebonus:	fclean bonus
-
-.PHONY:		all bonus clean fclean re rebonus linux
+re: fclean all

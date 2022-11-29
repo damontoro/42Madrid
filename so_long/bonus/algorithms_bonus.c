@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithms.c                                       :+:      :+:    :+:   */
+/*   algorithms_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 08:47:22 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/11/29 09:17:17 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/11/29 09:55:51 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "defs.h"
-#include "functions.h"
+#include "so_long_bonus.h"
 
 void	bfs(t_bfs_aux data)
 {

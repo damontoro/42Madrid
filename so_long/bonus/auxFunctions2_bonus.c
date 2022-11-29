@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   auxFunctions2.c                                    :+:      :+:    :+:   */
+/*   auxFunctions2_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 08:47:28 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/11/29 09:42:06 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/11/29 11:11:54 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "defs.h"
-#include "functions.h"
+#include "so_long_bonus.h"
 
 t_coords	*create_coords(int x, int y)
 {
@@ -51,13 +50,13 @@ void	load_adj_data(int **ret, t_map *map)
 		{
 			k = 0;
 			ft_memset(ret[i * map->width + j], -1, 5 * sizeof(int));
-			if (check_boundary(j, i + 1, (*map)) && map->map[i + 1][j] != '1')
+			if (check_movable(map, i + 1, j))
 				ret[i * map->width + j][k++] = ((i + 1) * map->width + j);
-			if (check_boundary(j, i - 1, (*map)) && map->map[i - 1][j] != '1')
+			if (check_movable(map, i - 1, j))
 				ret[i * map->width + j][k++] = ((i - 1) * map->width + j);
-			if (check_boundary(j + 1, i, (*map)) && map->map[i][j + 1] != '1')
+			if (check_movable(map, i, j + 1))
 				ret[i * map->width + j][k++] = (i * map->width + j + 1);
-			if (check_boundary(j - 1, i, (*map)) && map->map[i][j - 1] != '1')
+			if (check_movable(map, i, j - 1))
 				ret[i * map->width + j][k++] = (i * map->width + j - 1);
 			j++;
 		}

@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 08:47:53 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/11/29 09:47:19 by dmontoro         ###   ########.fr       */
+/*   Created: 2022/11/29 11:19:00 by dmontoro          #+#    #+#             */
+/*   Updated: 2022/11/29 11:24:01 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "functions.h"
+#include "so_long_bonus.h"
 
 int	key_hook(int keycode, t_controller *con)
 {
+	char	*str;
+
 	if (keycode == 12 || keycode == 53)
 	{
 		mlx_destroy_window(con->vars.mlx, con->vars.win);
@@ -29,9 +31,13 @@ int	key_hook(int keycode, t_controller *con)
 			con->game.move_count += move(con, 0, 1);
 		else if (keycode == 2)
 			con->game.move_count += move(con, 1, 0);
+		str = ft_itoa(con->game.move_count);
+		mlx_put_image_to_window(con->vars.mlx, \
+		con->vars.win, con->sprites->wall, 0, 0);
+		mlx_string_put(con->vars.mlx, con->vars.win, 5, 5, 0x00FFFFFF, str);
+		free(str);
 	}
-	printf("KeyPressed: %d\n", keycode);
-	printf("MoveCount: %d\n", con->game.move_count);
+	printf("Move Count: %d\n", con->game.move_count);
 	return (0);
 }
 
@@ -43,7 +49,14 @@ int	loop_hook(t_controller *con)
 		mlx_destroy_window(con->vars.mlx, con->vars.win);
 		exit(0);
 	}
+	else if (con->game.win == -1)
+	{
+		ft_putstr_fd("You Lose!\n", 1);
+		mlx_destroy_window(con->vars.mlx, con->vars.win);
+		exit(0);
+	}
 	update_player(*con);
+	updateEnemies();
 	return (0);
 }
 

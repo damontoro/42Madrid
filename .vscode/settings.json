@@ -11,7 +11,8 @@
 		"types.h": "c",
 		"defs.h": "c",
 		"libft.h": "c",
-		"functions.h": "c"
+		"functions.h": "c",
+		"so_long_bonus.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "Enabled"
 }
