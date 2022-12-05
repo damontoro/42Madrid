@@ -32,7 +32,7 @@ int main(int argc, char *const argv[], char *const envp[])
 		while (read(fd[0], &c, 1) > 0)
 			write(1, &c, 1);
 		*/
-
+		printf
 		dup2(fd[0], STDIN_FILENO);
 		close(fd[0]);
 		waitpid(childpid, NULL, 0);

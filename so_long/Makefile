@@ -6,7 +6,7 @@
 #    By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 07:03:20 by dmontoro          #+#    #+#              #
-#    Updated: 2022/12/05 12:40:35 by dmontoro         ###   ########.fr        #
+#    Updated: 2022/12/05 12:50:31 by dmontoro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= so_long
 
 CC	= gcc
 
-CFLAGS	= -g -O0 -D BUFFER_SIZE=42 -Wall -Werror -Wextra -fsanitize=address
+CFLAGS	= -g -O0 -D BUFFER_SIZE=42 -Wall -Werror -Wextra #-fsanitize=address
 
 RM	= rm -f
 
@@ -64,3 +64,5 @@ fclean: clean
 	@rm -rf $(NAME)
 
 re: fclean all
+
+rebonus : fclean bonus
