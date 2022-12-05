@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 08:47:25 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/11/29 09:48:21 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/12/05 11:11:37 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ void	update_player(t_controller con)
 	{
 		con.sprites->player.curr_frame++;
 		con.sprites->player.curr_frame %= ANIMATION_FRAMES;
+		mlx_put_image_to_window(con.vars.mlx, con.vars.win, \
+		con.sprites->floor, con.game.player.x \
+		* SPRITE_SIZE, con.game.player.y * SPRITE_SIZE);
 		mlx_put_image_to_window(con.vars.mlx, con.vars.win, \
 		con.sprites->player.sprites \
 		[con.sprites->player.curr_frame], con.game.player.x \

@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 09:19:08 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/11/29 11:22:07 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/12/05 12:01:47 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	move_player(t_controller *con, int x, int y)
 void	print_sprite(t_controller con, void *sp, int i, int j)
 {
 	mlx_put_image_to_window(con.vars.mlx, con.vars.win, \
+	con.sprites->floor, j * SPRITE_SIZE, i * SPRITE_SIZE);
+	mlx_put_image_to_window(con.vars.mlx, con.vars.win, \
 	sp, j * SPRITE_SIZE, i * SPRITE_SIZE);
 }
 
@@ -43,4 +45,31 @@ int	check_boundary(int x, int y, t_map map)
 	if (x < 0 || y < 0 || x >= map.width || y >= map.height)
 		return (0);
 	return (1);
+}
+
+void	update_enemy(t_controller con)
+{
+	t_list	*tmp;
+
+	if (con.sprites->enemy.time_out > TIMEOUT)
+	{
+		tmp = con.game.enemies;
+		con.sprites->enemy.curr_frame++;
+		con.sprites->enemy.curr_frame %= ANIMATION_FRAMES;
+		while (tmp != NULL)
+		{
+			mlx_put_image_to_window(con.vars.mlx, con.vars.win, \
+			con.sprites->floor, \
+			((t_coords *)tmp->content)->x * SPRITE_SIZE, \
+			((t_coords *)tmp->content)->y * SPRITE_SIZE);
+			mlx_put_image_to_window(con.vars.mlx, con.vars.win, \
+			con.sprites->enemy.sprites \
+			[con.sprites->enemy.curr_frame], ((t_coords *)tmp->content)->x \
+			* SPRITE_SIZE, ((t_coords *)tmp->content)->y * SPRITE_SIZE);
+			tmp = tmp->next;
+		}
+		con.sprites->enemy.time_out = 0;
+	}
+	else
+		con.sprites->enemy.time_out++;
 }

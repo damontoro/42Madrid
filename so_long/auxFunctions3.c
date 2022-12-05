@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 09:19:08 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/11/29 11:18:45 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/12/05 12:15:32 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	move_player(t_controller *con, int x, int y)
 
 void	print_sprite(t_controller con, void *sp, int i, int j)
 {
+	mlx_put_image_to_window(con.vars.mlx, con.vars.win, \
+	con.sprites->floor, j * SPRITE_SIZE, i * SPRITE_SIZE);
 	mlx_put_image_to_window(con.vars.mlx, con.vars.win, \
 	sp, j * SPRITE_SIZE, i * SPRITE_SIZE);
 }

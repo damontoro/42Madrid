@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 11:22:38 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/11/29 11:23:42 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/12/05 11:20:39 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # endif
 
 # ifndef SRITE_SIZE
-#  define SPRITE_SIZE 32
+#  define SPRITE_SIZE 64
 # endif
 
 # ifndef ANIMATION_FRAMES
@@ -80,6 +80,7 @@ typedef struct s_animation {
 typedef struct s_game {
 	t_map		map;
 	t_list		*items;
+	t_list		*enemies;
 	int			total_items;
 	int			collected_items;
 	int			move_count;

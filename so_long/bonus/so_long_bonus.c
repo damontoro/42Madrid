@@ -6,21 +6,24 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 11:19:00 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/11/29 11:55:28 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/12/05 12:09:54 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
+
+int	destroy_hook(t_controller *con)
+{
+	free_all(con);
+	return (0);
+}
 
 int	key_hook(int keycode, t_controller *con)
 {
 	char	*str;
 
 	if (keycode == 12 || keycode == 53)
-	{
-		mlx_destroy_window(con->vars.mlx, con->vars.win);
-		exit(0);
-	}
+		free_all(con);
 	else
 	{
 		if (keycode == 13)
@@ -44,18 +47,15 @@ int	key_hook(int keycode, t_controller *con)
 int	loop_hook(t_controller *con)
 {
 	if (con->game.win == 1)
-	{
 		ft_putstr_fd("You Win!\n", 1);
-		mlx_destroy_window(con->vars.mlx, con->vars.win);
-		exit(0);
-	}
 	else if (con->game.win == -1)
-	{
 		ft_putstr_fd("You Lose!\n", 1);
-		mlx_destroy_window(con->vars.mlx, con->vars.win);
-		exit(0);
+	if (con->game.win != 0)
+	{
+		free_all(con);
 	}
 	update_player(*con);
+	update_enemy(*con);
 	return (0);
 }
 
@@ -66,23 +66,23 @@ t_sprites	*load_sprites(t_controller *con)
 
 	ret = (t_sprites *)ft_calloc(1, sizeof(t_sprites));
 	ret->wall = mlx_xpm_file_to_image(con->vars.mlx, \
-	"./assets/wall.xpm", &x, &x);
+	"./assets/Tronco.xpm", &x, &x);
 	ret->exit = mlx_xpm_file_to_image(con->vars.mlx, \
-	"./assets/exit.xpm", &x, &x);
+	"./assets/Salida.xpm", &x, &x);
 	ret->floor = mlx_xpm_file_to_image(con->vars.mlx, \
-	"./assets/floor.xpm", &x, &x);
+	"./assets/Agua.xpm", &x, &x);
 	ret->item = mlx_xpm_file_to_image(con->vars.mlx, \
-	"./assets/polla.xpm", &x, &x);
+	"./assets/Piedra.xpm", &x, &x);
 	ft_bzero(ret->player.sprites, sizeof(ret->player.sprites));
 	ret->player.sprites[0] = mlx_xpm_file_to_image(con->vars.mlx, \
-	"./assets/jiggly.xpm", &x, &x);
+	"./assets/Nutria.xpm", &x, &x);
 	ret->player.sprites[1] = mlx_xpm_file_to_image(con->vars.mlx, \
-	"./assets/jiggly2.xpm", &x, &x);
+	"./assets/Nutria2.xpm", &x, &x);
 	ft_bzero(ret->enemy.sprites, sizeof(ret->enemy.sprites));
 	ret->enemy.sprites[0] = mlx_xpm_file_to_image(con->vars.mlx, \
-	"./assets/enemy.xpm", &x, &x);
+	"./assets/Cocodrilo.xpm", &x, &x);
 	ret->enemy.sprites[1] = mlx_xpm_file_to_image(con->vars.mlx, \
-	"./assets/enemy.xpm", &x, &x);
+	"./assets/Cocodrilo2.xpm", &x, &x);
 	return (ret);
 }
 
@@ -102,6 +102,8 @@ int	main(int argc, char *argv[])
 	* SPRITE_SIZE, con.game.map.height * SPRITE_SIZE, "so_long");
 	con.sprites = load_sprites(&con);
 	print_map(con);
+	free_ini_sprites(&con);
+	mlx_hook(con.vars.win, 17, 0L, destroy_hook, &con);
 	mlx_loop_hook(con.vars.mlx, loop_hook, &con);
 	mlx_hook(con.vars.win, 2, 1L << 0, key_hook, &con);
 	mlx_loop(con.vars.mlx);

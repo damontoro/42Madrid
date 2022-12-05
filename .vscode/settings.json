@@ -12,7 +12,9 @@
 		"defs.h": "c",
 		"libft.h": "c",
 		"functions.h": "c",
-		"so_long_bonus.h": "c"
+		"so_long_bonus.h": "c",
+		"stack": "cpp",
+		"iostream": "cpp"
 	},
 	"C_Cpp.errorSquiggles": "Enabled"
 }

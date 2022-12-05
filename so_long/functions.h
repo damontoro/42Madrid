@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 08:47:37 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/11/29 09:47:31 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/12/05 12:12:59 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_coords	*create_coords(int x, int y);
 int			**load_adj(t_map *map);
 void		free_bfs_data(t_game *game, t_bfs_aux d);
 void		print_sprite(t_controller con, void *sp, int i, int j);
+void		free_ini_sprites(t_controller *con);
+void		free_all(t_controller *con);
 
 char		*get_next_line(int fd);
 size_t		ft_strlen_gnl(const char *s);

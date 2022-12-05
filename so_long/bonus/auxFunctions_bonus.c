@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 08:47:25 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/11/29 11:22:23 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/12/05 11:28:21 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	update_player(t_controller con)
 	{
 		con.sprites->player.curr_frame++;
 		con.sprites->player.curr_frame %= ANIMATION_FRAMES;
+		mlx_put_image_to_window(con.vars.mlx, con.vars.win, con.sprites->floor, \
+		con.game.player.x * SPRITE_SIZE, con.game.player.y * SPRITE_SIZE);
 		mlx_put_image_to_window(con.vars.mlx, con.vars.win, \
 		con.sprites->player.sprites \
 		[con.sprites->player.curr_frame], con.game.player.x \
@@ -85,13 +87,13 @@ void	load_game_data(t_game *game, char *filename)
 	int	i;
 	int	j;
 
-	i = 1;
+	i = 0;
 	ft_bzero(game, sizeof(t_game));
 	game->map = parse_map(filename);
-	while (i < game->map.height - 1)
+	while (i++ < game->map.height - 1)
 	{
-		j = 1;
-		while (j < game->map.width - 1)
+		j = 0;
+		while (j++ < game->map.width - 1)
 		{
 			if (game->map.map[i][j] == 'P')
 			{
@@ -100,9 +102,9 @@ void	load_game_data(t_game *game, char *filename)
 			}
 			else if (game->map.map[i][j] == 'C')
 				ft_lstadd_back(&game->items, ft_lstnew(create_coords(j, i)));
-			j++;
+			else if (game->map.map[i][j] == 'X')
+				ft_lstadd_back(&game->enemies, ft_lstnew(create_coords(j, i)));
 		}
-		i++;
 	}
 	game->total_items = ft_lstsize(game->items);
 	check_path(game);

@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 08:47:31 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/11/29 09:44:58 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/12/05 10:55:00 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # endif
 
 # ifndef SRITE_SIZE
-#  define SPRITE_SIZE 32
+#  define SPRITE_SIZE 64
 # endif
 
 # ifndef ANIMATION_FRAMES
