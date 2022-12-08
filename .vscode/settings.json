@@ -14,7 +14,11 @@
 		"functions.h": "c",
 		"so_long_bonus.h": "c",
 		"stack": "cpp",
-		"iostream": "cpp"
+		"iostream": "cpp",
+		"string": "cpp",
+		"vector": "cpp",
+		"algorithm": "cpp",
+		"ostream": "cpp"
 	},
 	"C_Cpp.errorSquiggles": "Enabled"
 }

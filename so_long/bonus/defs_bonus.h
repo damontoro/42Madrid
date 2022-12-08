@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 11:22:38 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/12/05 11:20:39 by dmontoro         ###   ########.fr       */
+/*   Updated: 2022/12/08 13:23:21 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@
 # endif
 
 # ifndef MAX_HEIGHT
-#  define MAX_HEIGHT 1080
+#  define MAX_HEIGHT 2550
 # endif
 
 # ifndef MAX_WIDTH
-#  define MAX_WIDTH 1920
+#  define MAX_WIDTH 5120
 # endif
 
 # ifndef SRITE_SIZE
