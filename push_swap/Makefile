@@ -14,11 +14,11 @@ NAME	= push_swap
 
 CC	= gcc
 
-CFLAGS	= -g -O0 -D BUFFER_SIZE=42 -Wall -Werror -Wextra -fsanitize=address
+CFLAGS	= -g3 -O0 -D BUFFER_SIZE=42 -Wall -Werror -Wextra -fsanitize=address
 
 RM	= rm -f
 
-SRCS	= push_swap.c inst1.c inst2.c
+SRCS	= push_swap.c parse.c smallsort.c inst1.c inst2.c
 
 OBJ	= ${SRCS:.c=.o}
 

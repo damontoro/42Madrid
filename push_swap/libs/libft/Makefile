@@ -14,7 +14,7 @@ NAME	= liblibft.a
 
 CC	= gcc
 
-FLAGS	= -Wall -Werror -Wextra
+FLAGS	= -g -O0 -Wall -Werror -Wextra
 
 RM	= rm -f
 

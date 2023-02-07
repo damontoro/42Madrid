@@ -1,5 +1,10 @@
 #include "push_swap.h"
 
+void ft_error(char *str)
+{
+	write(1, str, ft_strlen(str));
+	exit(1);
+}
 
 static unsigned long long int	bad_numbers(unsigned long long int z, int y)
 {
@@ -38,3 +43,4 @@ int	ft_err_atoi(const char *str)
 	num = bad_numbers(num, sign);
 	return (num * sign);
 }
+
