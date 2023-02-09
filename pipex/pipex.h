@@ -15,6 +15,7 @@ struct data{
 	char *aux;
 	int inFile;
 	int outFile;
+	int exit;
 	pid_t childpid;
 };
 

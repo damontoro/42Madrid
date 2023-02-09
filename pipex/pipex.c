@@ -25,17 +25,26 @@ char *findPath(char * const*envp, char *command){
 	i = 0;
 	while (envp[i] != NULL && ft_strncmp(envp[i], "PATH=", 5) != 0)
 		i++;
-
 	paths = ft_split(envp[i], ':');
-	j = 0;
-	while(paths[j] != NULL){
+	j = -1;
+	while (paths[j] != NULL)
+	{
+		if (j == -1)
+			path = ft_strjoin("", command);
+		else
+			path = ft_strjoin(paths[j], command);
 		j++;
-		path = ft_strjoin(paths[j], command);
-		if(access(path, F_OK | X_OK) == 0){
-			if(ret == NULL)
-				ret = ft_strdup(path);
+		if(access(path, F_OK | X_OK) == 0)
+		{
+			ret = ft_strdup(path);
+			break;
 		}
 		free(path);
+	}
+	if(ret == NULL)
+	{
+		perror("Error: command not found");
+		exit(127);
 	}
 	j = 0;
 	while (paths[j] != NULL)
@@ -51,12 +60,17 @@ void exCommand(char *path, char **c, char *const envp[])
 {
 	free(c[0]);
 	c[0] = path;
-	execve(path, c, envp);
+	if (execve(path, c, envp) == -1)
+	{
+		perror("Error: execve");
+		exit(1);
+	} //El codigo acaba aqui
+
 }
 
 void iniData(struct data *d, char *const argv[], const int argc){
-	d->inFile = open(argv[1], O_RDONLY, 0666);
-	d->outFile = open(argv[argc - 1],O_RDWR |  O_CREAT | O_TRUNC, 0666);
+	d->inFile = open(argv[1], O_RDONLY | O_CLOEXEC, 0600);
+	d->outFile = open(argv[argc - 1],O_CREAT | O_WRONLY | O_TRUNC | O_CLOEXEC, 0600);
 	dup2(d->inFile, STDIN_FILENO); //Clonamos stdin en el fichero para leer del fichero
 	close(d->inFile);
 }
@@ -68,6 +82,8 @@ void manageChild(struct data *d, int argc, int i, int fd[], char *const envp[]){
 		close(fd[0]);
 		if (i == argc - 2)
 		{
+			if (d->outFile == -1)
+				exit(1);
 			dup2(d->outFile, STDOUT_FILENO); //Clonamos la salida estandar en el fichero para escribir en el fichero
 			close(d->outFile);
 		}
@@ -92,6 +108,8 @@ int main(int argc, char *const argv[], char *const envp[])
 	int i;
 	int fd[2];
 
+	if (!envp || !*envp)
+		exit(127);
 	if (argc < 5)
 	{
 		perror("Error: numero de argumentos incorrecto\n");
@@ -106,8 +124,15 @@ int main(int argc, char *const argv[], char *const envp[])
 		d.aux = ft_strjoin("/", d.comm[0]);
 		d.path = findPath(envp, d.aux);
 		manageChild(&d, argc, i, fd, envp);
+		if(i == argc - 2)
+		{
+			waitpid(d.childpid, &d.exit, 0);
+			if (WIFEXITED(d.exit))
+				d.exit = WEXITSTATUS(d.exit);
+			printf("exit status: %d\n", d.exit);
+		}
 		i++;
 	}
-	return (0);
+	return (d.exit);
 }
 
