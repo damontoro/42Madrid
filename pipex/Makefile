@@ -6,7 +6,7 @@
 #    By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 07:03:20 by dmontoro          #+#    #+#              #
-#    Updated: 2022/10/08 11:56:30 by dmontoro         ###   ########.fr        #
+#    Updated: 2023/02/17 11:56:00 by dmontoro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,11 @@ NAME	= pipex
 
 CC	= gcc
 
-CFLAGS	= -g -O0 -D BUFFER_SIZE=42 -Wall -Werror -Wextra -fsanitize=address
+CFLAGS	= -g3 -O0 -D BUFFER_SIZE=42 -Wall -Werror -Wextra -fsanitize=address
 
 RM	= rm -f
 
-SRCS	= pipex.c
+SRCS	= pipex.c pipexAux.c
 
 OBJ	= ${SRCS:.c=.o}
 
