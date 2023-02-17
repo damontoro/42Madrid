@@ -18,7 +18,10 @@
 		"string": "cpp",
 		"vector": "cpp",
 		"algorithm": "cpp",
-		"ostream": "cpp"
+		"ostream": "cpp",
+		"array": "c",
+		"iterator": "c",
+		"string_view": "c"
 	},
 	"C_Cpp.errorSquiggles": "Enabled"
 }

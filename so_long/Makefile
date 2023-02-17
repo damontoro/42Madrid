@@ -6,7 +6,7 @@
 #    By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 07:03:20 by dmontoro          #+#    #+#              #
-#    Updated: 2022/12/05 12:50:31 by dmontoro         ###   ########.fr        #
+#    Updated: 2023/02/17 12:47:49 by dmontoro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,10 +41,10 @@ bonus: ${BONUS}
 %.o: %.c
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
-$(NAME): $(OBJS) $(INCL) $(LIBFT)
+$(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(SRCS) -Iincludes $(LIBFT) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
-$(BONUS): $(BNS_OBJS) $(INCL) $(LIBFT)
+$(BONUS): $(BNS_OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(BNS_SRCS) -Iincludes $(LIBFT) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 $(LIBFT):
