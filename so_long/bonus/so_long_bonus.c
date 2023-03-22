@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 11:19:00 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/12/05 12:51:00 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/03/22 10:33:47 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	key_hook(int keycode, t_controller *con)
 {
 	char	*str;
 
-	str = ft_itoa(con->game.move_count);
+	str = ft_itoa(con->game.move_count + 1);
 	if (keycode == 12 || keycode == 53)
 		free_all(con);
 	else
