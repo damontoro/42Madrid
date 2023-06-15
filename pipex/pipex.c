@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 10:41:18 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/06/15 20:08:46 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/06/15 21:38:25 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ex_command(char *path, char **c, char **envp)
 	c[0] = path;
 	if (!path)
 	{
-		perror("Error: command not found");
+		perror("Error: command not found: invalid argument\n");
 		exit(127);
 	}
 	if (execve(path, c, envp) == -1)

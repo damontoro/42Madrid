@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 10:50:15 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/06/15 21:07:56 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/06/15 21:38:45 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ char	*find_path(char **envp, char *command)
 		if (j != -1)
 			path = ft_strjoin(paths[j], command);
 		if (check_access(path, &ret) == 0){
-			printf("path: %s\n", ret);
 			break ;
 		}
 		j++;
