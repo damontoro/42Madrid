@@ -4,10 +4,3 @@
 3 234
 4 asdfasdf
 
-
-Arreglar la detección de que el comando no está en la busqueda en el entorno
-Arrelgar errores del execlv
-Arreglar que no pete sin env
-
-Arreglar que el error de comando no encontrado lo lance el hijo
-Mirar si en mis envp parseadas está PATH=
