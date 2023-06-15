@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 10:41:18 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/02/17 12:35:47 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/06/15 20:08:46 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	free_memoria(char **c, char *path, char *aux)
 	free(aux);
 }
 
-void	ex_command(char *path, char **c, char *const *envp)
+void	ex_command(char *path, char **c, char **envp)
 {
 	free(c[0]);
 	c[0] = path;
@@ -56,7 +56,7 @@ void	ini_data(t_data *d, char *const argv[], const int argc)
 }
 
 void	manage_child(t_data *d, int argc, \
-int i, char *const envp[])
+int i, char *envp[])
 {
 	d->childpid = fork();
 	if (d->childpid == 0)
@@ -73,10 +73,11 @@ int i, char *const envp[])
 	}
 }
 
-int	main(int argc, char *const argv[], char *const envp[])
+int	main(int argc, char *const argv[], char *envp[])
 {
 	t_data	d;
 	int		i;
+
 
 	if (!envp || !*envp)
 		exit(127);

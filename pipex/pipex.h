@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:04:51 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/02/17 11:38:41 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/06/15 20:07:40 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_data{
 	int		fd[2];
 }	t_data;
 
-char	*find_path(char *const *envp, char *command);
+char	*find_path(char **envp, char *command);
 void	last_child(int i, int argc, t_data *d);
 void	manage_child_fds(int i, int argc, t_data *d);
 

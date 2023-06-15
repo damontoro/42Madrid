@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 10:50:15 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/03/07 10:24:34 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/06/15 21:07:56 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	check_access(char *path, char **ret)
 		return (1);
 }
 
-char	*find_path(char *const *envp, char *command)
+char	*find_path(char **envp, char *command)
 {
 	int		i;
 	char	**paths;
@@ -47,6 +47,7 @@ char	*find_path(char *const *envp, char *command)
 
 	i = 0;
 	ret = NULL;
+
 	while (envp[i] != NULL && ft_strncmp(envp[i], "PATH=", 5) != 0)
 		i++;
 	paths = ft_split(envp[i] + 5, ':');
@@ -56,8 +57,10 @@ char	*find_path(char *const *envp, char *command)
 	{
 		if (j != -1)
 			path = ft_strjoin(paths[j], command);
-		if (check_access(path, &ret) == 0)
+		if (check_access(path, &ret) == 0){
+			printf("path: %s\n", ret);
 			break ;
+		}
 		j++;
 		free (path);
 	}
@@ -81,8 +84,9 @@ void	manage_child_fds(int i, int argc, t_data *d)
 	if (i == argc - 2)
 	{
 		close (d->fd[1]);
-		if (d->out_file == -1){}
+		if (d->out_file == -1){
 			exit(1);
+		}
 		dup2(d->out_file, STDOUT_FILENO);
 		close(d->out_file);
 	}
