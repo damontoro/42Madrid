@@ -14,11 +14,11 @@ NAME	= pipex
 
 CC	= gcc
 
-CFLAGS	= -g3  -O0 -D BUFFER_SIZE=42 -Wall -Werror -Wextra -fsanitize=address
+CFLAGS	= -g3 -O0 -D BUFFER_SIZE=42 -Wall -Werror -Wextra #-fsanitize=address
 
 RM	= rm -f
 
-SRCS	= pipex.c pipexAux.c
+SRCS	= pipex.c pipexAux.c pipexAux2.c
 
 OBJS	= ${SRCS:.c=.o}
 

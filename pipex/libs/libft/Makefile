@@ -48,7 +48,8 @@ ${NAME}:	${MANDATORY_OBJ}
 all:		${NAME}
 
 clean:
-				${RM} ${MANDATORY_OBJ} ${BONUS_OBJ}
+	@${RM} ${MANDATORY_OBJ} ${BONUS_OBJ}
+	@echo "cleaning libft .o files"
 
 fclean: 	clean
 				${RM} ${NAME}

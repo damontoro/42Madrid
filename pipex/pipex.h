@@ -35,5 +35,6 @@ typedef struct s_data{
 char	*find_path(char **envp, char *command);
 void	last_child(int i, int argc, t_data *d);
 void	manage_child_fds(int i, int argc, t_data *d);
+char	**parse_command(char *command);
 
 #endif

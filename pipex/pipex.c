@@ -47,7 +47,7 @@ void	ini_data(t_data *d, char *const argv[], const int argc)
 {
 	d->in_file = open(argv[1], O_RDONLY | O_CLOEXEC, 0600);
 	d->out_file = open(argv[argc - 1], O_CREAT | \
-	O_WRONLY | O_TRUNC | O_CLOEXEC, 0600);
+	O_WRONLY | O_TRUNC | O_CLOEXEC, 0644);
 	if (d->in_file != -1)
 	{
 		dup2(d->in_file, STDIN_FILENO);
