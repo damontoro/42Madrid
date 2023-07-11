@@ -11,9 +11,15 @@ static int	count_words(char const *s, char c)
 	count = 0;
 	while (s[i])
 	{
-		if(s[i] == '\'' || s[i] == '\"')
+		if(s[i] == '\'')
 		{
-			while (s[++i] && s[i] != '\'' && s[i] != '\"');
+			while (s[++i] && s[i] != '\'');
+			count++;
+			i++;
+		}
+		if(s[i] == '\"')
+		{
+			while (s[++i] && s[i] != '\"');
 			count++;
 			i++;
 		}
@@ -35,27 +41,44 @@ static int	count_words(char const *s, char c)
 	return (count);
 }
 
+int check_comillas(char c, const char *s, int i)
+{
+	int j;
+
+	if(s[i] != c)
+		return (0);
+	j = i + 1;
+	while (s[j] && s[j] != c)
+		j++;
+	if (s[j] == c)
+		return (j - i);
+	return (0);
+}
+
 static int	word_size(const char *s, char c)
 {
 	int	ret;
 	int	i;
 
-	i = 0;
+	i = 0; 
 	ret = 0;
 	while (s[i] && s[i] != c)
 	{
-		if(s[i] == '\'' || s[i] == '\"')
-		{
-			i++; ret++;
-			while (s[i] && s[i] != '\'' && s[i] != '\"'){
-				ret++;
-				i++;
+		if(check_comillas('\'', s, i)){
+			if(i == 0){
+				return check_comillas('\'', s, i);
 			}
-			ret++; i++;
-			continue;
+			return (ret);
 		}
+		if(check_comillas('\"', s, i)){
+			if(i == 0){
+				return check_comillas('\"', s, i);
+			}
+			return (ret);
+		}
+
 		ret++;
-		++i;
+		i++;
 	}
 	return (ret);
 }
@@ -85,6 +108,18 @@ static char	*manage_malloc(char **res, const char *s, char c, int i)
 	return (ret);
 }
 
+void static copy_word(char **ret, const char *s, char c, int *i, int *j)
+{
+	int comillas;
+	ret[*i] = manage_malloc(ret, &s[*j], c, *i);
+	if(!ret[*i])
+		return;
+	comillas = (check_comillas('\'', s, *j) || check_comillas('\"', s, *j));
+	ret[*i] = ft_substr(s, (*j) + comillas, word_size(&s[*j], c) - comillas);
+	*j += word_size(&s[*j], c) + comillas;
+	*j += skip_char(&s[*j], c);
+	(*i)++;
+}
 
 char	**split_args(char const *s, char c)
 {
@@ -98,20 +133,15 @@ char	**split_args(char const *s, char c)
 	i = 0;
 	j = skip_char(&s[0], c);
 	num_words = count_words(s, c) + 1;
-	printf("num_words: %d\n", num_words);
 	ret = malloc((num_words) * sizeof(char *));
 	if (!ret)
 		return (NULL);
 	ret[num_words - 1] = 0;
 	while (--num_words > 0)
 	{
-		ret[i] = manage_malloc(ret, &s[j], c, i);
-		if (!ret[i])
+		copy_word(ret, s, c, &i, &j);
+		if (!ret[i - 1])
 			return (NULL);
-		ft_strlcpy(ret[i], &s[j], (size_t) word_size(&s[j], c) + 1);
-		i++;
-		j += word_size(&s[j], c);
-		j += skip_char(&s[j], c);
 	}
 	return (ret);
 }
