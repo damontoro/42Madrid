@@ -6,7 +6,7 @@
 #    By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 07:03:20 by dmontoro          #+#    #+#              #
-#    Updated: 2023/07/11 21:17:17 by dmontoro         ###   ########.fr        #
+#    Updated: 2023/07/11 21:33:24 by dmontoro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= push_swap
 
 CC	= gcc
 
-CFLAGS	= -g3 -O0 -D BUFFER_SIZE=42 -Wall -Werror -Wextra -fsanitize=address
+CFLAGS	= -g3 -O0 -D BUFFER_SIZE=42 -Wall -Werror -Wextra
 
 RM	= rm -f
 
@@ -31,7 +31,7 @@ LIBFTNAME = libft.a
 LIBFTPATH = ${LIBFTDIR}${LIBFTNAME}
 
 .c.o:
-		${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJ} ${LIBFTPATH}
 				${CC} ${CFLAGS} ${OBJ} -L${LIBFTDIR} -l${LIBFT} -o ${NAME}
@@ -39,10 +39,11 @@ ${NAME}:	${OBJ} ${LIBFTPATH}
 ${LIBFTPATH}:
 				@make bonus -C ${LIBFTDIR}
 
-bonus:		all ${OBJB}
-				@make OBJ="${OBJB}"
 
 all:		${NAME}
+
+bonus:		all ${OBJB}
+				@make OBJ="${OBJB}"
 
 stack: ${LIBFTPATH}
 	$(CC) -o create_stack create_stack.c ${LIBFTPATH}

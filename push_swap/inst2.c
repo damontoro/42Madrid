@@ -11,7 +11,7 @@ static unsigned long long int	bad_numbers(unsigned long long int z, int y)
 	unsigned long long int	bad_number;
 
 	bad_number = INT_MAX;
-	if (z > bad_number + 1 && y < 0 || z > bad_number && y > 0)
+	if ((z > bad_number + 1 && y < 0) || (z > bad_number && y > 0))
 		ft_error("Int demasiado grande\n");
 	return (z);
 }

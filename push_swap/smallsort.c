@@ -72,7 +72,7 @@ void sort5(t_stack *a, t_stack *b)
 		min = findMin(a);
 		max = findMax(a);
 		if (a->top->content == min || a->top->content == max)
-			push(b, a, 'b');
+			push(a, b, 'b');
 		else
 			rotate(a, 'a');
 		i++;
@@ -80,8 +80,8 @@ void sort5(t_stack *a, t_stack *b)
 	sort3(a);
 	if (b->top->content > b->top->next->content)
 		swap(b, 'b');
-	push(a, b, 'a');
-	push(a, b, 'a');
+	push(b, a, 'a');
+	push(b, a, 'a');
 }
 
 void	smallSort(t_stack *a, t_stack *b)
