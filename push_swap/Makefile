@@ -6,7 +6,7 @@
 #    By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 07:03:20 by dmontoro          #+#    #+#              #
-#    Updated: 2022/10/08 11:56:30 by dmontoro         ###   ########.fr        #
+#    Updated: 2023/07/11 21:17:17 by dmontoro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,14 @@ bonus:		all ${OBJB}
 				@make OBJ="${OBJB}"
 
 all:		${NAME}
+
+stack: ${LIBFTPATH}
+	$(CC) -o create_stack create_stack.c ${LIBFTPATH}
+	./create_stack a.txt
+	$(RM) create_stack
+
+pswap:
+	ARG=$$(cat a.txt); ./push_swap $$ARG | ./checker_Mac $$ARG
 
 clean:
 				${RM} ${OBJ} ${OBJB}
