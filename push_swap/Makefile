@@ -6,7 +6,7 @@
 #    By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 07:03:20 by dmontoro          #+#    #+#              #
-#    Updated: 2023/07/12 07:06:36 by dmontoro         ###   ########.fr        #
+#    Updated: 2023/07/12 09:20:40 by dmontoro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CFLAGS	= -g3 -O0 -D BUFFER_SIZE=42 -Wall -Werror -Wextra
 
 RM	= rm -f
 
-SRCS	= push_swap.c parse.c smallsort.c inst1.c inst2.c utils1.c
+SRCS	= push_swap.c parse.c smallsort.c bigsort.c inst1.c inst2.c utils1.c
 
 OBJ	= ${SRCS:.c=.o}
 
@@ -34,7 +34,7 @@ LIBFTPATH = ${LIBFTDIR}${LIBFTNAME}
 		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJ} ${LIBFTPATH}
-				${CC} ${CFLAGS} ${OBJ} -L${LIBFTDIR} -l${LIBFT} -o ${NAME}
+				${CC} ${CFLAGS} ${OBJ} -Iincludes ${LIBFTPATH} -o ${NAME}
 
 ${LIBFTPATH}:
 				@make bonus -C ${LIBFTDIR}

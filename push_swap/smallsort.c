@@ -32,10 +32,11 @@ void	sort3(t_stack *a)
 void sort5(t_stack *a, t_stack *b, int i)
 {
 	int min;
+	int juju;
 
 	while (i < 2)
 	{
-		min = find_min(a);
+		min = find_min(a, &juju);
 		moveto_first(a, min);
 		push(a, b, 'b');
 		i++;
@@ -45,7 +46,7 @@ void sort5(t_stack *a, t_stack *b, int i)
 	push(b, a, 'a');
 }
 
-void	smallSort(t_stack *a, t_stack *b)
+void	small_sort(t_stack *a, t_stack *b)
 {
 	if (ft_lstsize(a->top) == 2)
 		rotate(a, 'a');

@@ -20,8 +20,10 @@ int		ft_err_atoi(const char *str);
 void	parseArgs(t_stack *stack, int argc, char **argv);
 int		sorted(t_list *list);
 
-void	smallSort(t_stack *a, t_stack *b);
-void	bigSort(t_stack *a, t_stack *b);
+void	index_stack(t_stack *stack);
+
+void	small_sort(t_stack *a, t_stack *b);
+void	big_sort(t_stack *a, t_stack *b);
 
 void	swap(t_stack *stack, char c);
 void	ss(t_stack *a, t_stack *b);
@@ -31,8 +33,8 @@ void	rr(t_stack *a, t_stack *b);
 void	rrotate(t_stack *stack, int c);
 void	rrr(t_stack *a, t_stack *b);
 
-int		find_min(t_stack *stack);
-int		find_max(t_stack *stack);
+int		find_min(t_stack *stack, int *m);
+int		find_max(t_stack *stack, int *m);
 void	moveto_first(t_stack *stack, int pos);
 
 # endif

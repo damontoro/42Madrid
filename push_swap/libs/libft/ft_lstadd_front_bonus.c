@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:24:10 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/21 11:24:11 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/07/12 09:02:18 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,5 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	new->next = *lst;
 	*lst = new;
+	new->prior = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 12:13:22 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/30 18:40:24 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/07/12 09:16:20 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 typedef struct s_list
 {
 	int				content;
+	int				index;
 	struct s_list	*next;
+	struct s_list	*prior;
 }				t_list;
 
 int				ft_isascii(int c);

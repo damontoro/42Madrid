@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:23:55 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/08/21 11:24:59 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/07/12 09:02:53 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ t_list	*ft_lstnew(void	*content)
 		return (NULL);
 	ret->content = *(int *)content;
 	ret->next = NULL;
+	ret->prior = NULL;
 	return (ret);
 }

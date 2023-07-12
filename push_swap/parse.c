@@ -37,7 +37,7 @@ void parseArgs(t_stack *stack, int argc, char **argv){
 		{	
 			num = ft_err_atoi(strs[j]);
 			searchRepetition(stack->top, num);
-			ft_lstadd_back(&stack->top, ft_lstnew(&num)); //segunda alocacion, creo el nodo, la referencia al nodo estará en la lista
+			ft_lstadd_back(&stack->top, ft_lstnew(&num));
 			stack->size++;
 			j++;
 		}
