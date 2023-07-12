@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 10:50:15 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/07/12 10:36:16 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:34:51 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*find_path(char **envp, char *command)
 		i++;
 	paths = ft_split(envp[i] + 5, ':');
 	j = -1;
-	path = ft_strjoin("", command);
+	path = ft_strdup(command);
 	while (j == -1 || paths[j] != NULL)
 	{
 		if (j != -1)

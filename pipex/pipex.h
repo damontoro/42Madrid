@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:04:51 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/07/12 12:07:38 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:51:50 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ void	manage_child_fds(int i, int argc, t_data *d);
 int		count_words(char const *s, char c);
 int		check_comillas(char c, const char *s, int i);
 char	**split_args(char const *s, char c);
+void	free_memoria(char **c, char *path, char *aux);
 
 #endif

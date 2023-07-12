@@ -22,7 +22,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${fileDirname}/pipex",
-			"args": ["pipex-tester/assets/deepthought.txt", "grep Now", "wc -w", "pipex-tester/outs/test-xx.txt"],
+			"args": ["pipex.c", "grep Hello", "wc -l", "output"],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
 			"environment": [],

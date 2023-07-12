@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 10:36:29 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/07/12 12:05:50 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:50:56 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,15 @@ void static	copy_word(char **ret, const char *s, char c, int *indexes)
 {
 	int	comillas;
 
-	ret[indexes[0]] = manage_malloc(ret, &s[indexes[1]], c, indexes[0]);
-	if (!ret[indexes[0]])
-		return ;
 	comillas = (check_comillas('\'', s, indexes[1]) || \
 		check_comillas('\"', s, indexes[1]));
 	ret[indexes[0]] = ft_substr(s, (indexes[1]) + comillas, \
 		word_size(&s[indexes[1]], c) - comillas);
+	if (!ret[indexes[0]])
+		return ;
 	indexes[1] += word_size(&s[indexes[1]], c) + comillas;
 	indexes[1] += skip_char(&s[indexes[1]], c);
-	(indexes[0])++;
+	indexes[0]++;
 }
 
 char	**split_args(char const *s, char c)

@@ -21,7 +21,8 @@
 		"ostream": "cpp",
 		"array": "c",
 		"iterator": "c",
-		"string_view": "c"
+		"string_view": "c",
+		"pipex.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "Enabled"
 }

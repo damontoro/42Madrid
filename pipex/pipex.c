@@ -6,11 +6,13 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 10:41:18 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/07/12 11:48:51 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:51:44 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include <stdlib.h>
+#include <unistd.h>
 
 void	free_memoria(char **c, char *path, char *aux)
 {
@@ -29,7 +31,6 @@ void	free_memoria(char **c, char *path, char *aux)
 
 void	ex_command(char *path, char **c, char **envp)
 {
-	free(c[0]);
 	c[0] = path;
 	if (!path)
 	{
