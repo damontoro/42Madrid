@@ -4,7 +4,7 @@ int main(int argc, char **argv)
 {
 	t_stack *stack_a;
 	t_stack *stack_b;
-	t_list *tmp;
+	//t_list *tmp;
 
 	stack_a = (t_stack *)calloc(1, (sizeof(t_stack)));
 	stack_b = (t_stack *)calloc(1, (sizeof(t_stack)));
@@ -24,11 +24,11 @@ int main(int argc, char **argv)
 		}
 		*/
 	}
-	tmp = stack_a->top;
-	while(tmp != NULL){
-		printf("%d\n", tmp->content);
-		tmp = tmp->next;
-	}
+	// tmp = stack_a->top;
+	// while(tmp != NULL){
+	// 	printf("%d\n", tmp->content);
+	// 	tmp = tmp->next;
+	// }
 	ft_lstclear(&stack_a->top);
 	free(stack_a);
 	ft_lstclear(&stack_b->top);

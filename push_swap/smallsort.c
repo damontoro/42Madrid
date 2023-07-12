@@ -1,36 +1,5 @@
 #include "push_swap.h"
 
-int findMin(t_stack *a)
-{
-	int min;
-	t_list *tmp;
-
-	tmp = a->top;
-	min = tmp->content;
-	while (tmp != NULL)
-	{
-		if (tmp->content < min)
-			min = tmp->content;
-		tmp = tmp->next;
-	}
-	return (min);
-}
-
-int findMax(t_stack *a)
-{
-	int max;
-	t_list *tmp;
-
-	tmp = a->top;
-	max = tmp->content;
-	while (tmp != NULL)
-	{
-		if (tmp->content > max)
-			max = tmp->content;
-		tmp = tmp->next;
-	}
-	return (max);
-}
 
 void	sort3(t_stack *a)
 {
@@ -60,26 +29,18 @@ void	sort3(t_stack *a)
 	
 }
 
-void sort5(t_stack *a, t_stack *b)
+void sort5(t_stack *a, t_stack *b, int i)
 {
-	int i;
 	int min;
-	int max;
 
-	i = 0;
 	while (i < 2)
 	{
-		min = findMin(a);
-		max = findMax(a);
-		if (a->top->content == min || a->top->content == max)
-			push(a, b, 'b');
-		else
-			rotate(a, 'a');
+		min = find_min(a);
+		moveto_first(a, min);
+		push(a, b, 'b');
 		i++;
 	}
 	sort3(a);
-	if (b->top->content > b->top->next->content)
-		swap(b, 'b');
 	push(b, a, 'a');
 	push(b, a, 'a');
 }
@@ -90,6 +51,8 @@ void	smallSort(t_stack *a, t_stack *b)
 		rotate(a, 'a');
 	else if (ft_lstsize(a->top) == 3)
 		sort3(a);
+	else if (ft_lstsize(a->top) == 4)
+		sort5(a, b, 1);
 	else if (ft_lstsize(a->top) == 5)
-		sort5(a, b);
+		sort5(a, b, 0);
 }
