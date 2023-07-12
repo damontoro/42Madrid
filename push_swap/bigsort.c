@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 08:51:02 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/07/12 09:37:05 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/07/12 10:27:01 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,16 @@ void big_sort(t_stack *a, t_stack *b)
 		//devuelve la posicion del primer numero del chunk por arriba
 		up = find_num(a, current_chunk, chunk_size, 0);
 		down = find_num(a, current_chunk, chunk_size, 1); //de segundo numero del chunk por abajo
+		if(up < a->size - down)
+			while(up-- > 0)
+				ra(a, 1);
+		else
+			while(down++ < a->size - 1)
+				rra(a, 1);
+
+		//colocamos b para poder mover el elemento del chunk
+		
+		pb(a, b, 'a');
 	}
 
 }
