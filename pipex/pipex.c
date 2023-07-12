@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 10:41:18 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/07/11 20:17:56 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/07/12 10:34:42 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,6 @@ int	main(int argc, char *const argv[], char *envp[])
 	{
 		pipe(d.fd);
 		d.comm = parse_command(argv[i]);
-		// for(int j = 0; d.comm[j] != NULL; j++)
-		// 	printf("%s\n", d.comm[j]);
 		d.aux = ft_strjoin("/", d.comm[0]);
 		d.path = find_path(envp, d.aux);
 		manage_child(&d, argc, i, envp);
@@ -101,5 +99,3 @@ int	main(int argc, char *const argv[], char *envp[])
 	}
 	return (d.exit);
 }
-
-

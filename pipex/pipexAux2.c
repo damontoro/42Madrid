@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipexAux2.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/12 10:36:29 by dmontoro          #+#    #+#             */
+/*   Updated: 2023/07/12 10:39:35 by dmontoro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 static int	count_words(char const *s, char c)
@@ -11,15 +23,17 @@ static int	count_words(char const *s, char c)
 	count = 0;
 	while (s[i])
 	{
-		if(s[i] == '\'')
+		if (s[i] == '\'')
 		{
-			while (s[++i] && s[i] != '\'');
+			while (s[++i] && s[i] != '\'')
+				;
 			count++;
 			i++;
 		}
-		if(s[i] == '\"')
+		if (s[i] == '\"')
 		{
-			while (s[++i] && s[i] != '\"');
+			while (s[++i] && s[i] != '\"')
+				;
 			count++;
 			i++;
 		}
@@ -43,9 +57,9 @@ static int	count_words(char const *s, char c)
 
 int check_comillas(char c, const char *s, int i)
 {
-	int j;
+	int	j;
 
-	if(s[i] != c)
+	if (s[i] != c)
 		return (0);
 	j = i + 1;
 	while (s[j] && s[j] != c)
@@ -64,19 +78,18 @@ static int	word_size(const char *s, char c)
 	ret = 0;
 	while (s[i] && s[i] != c)
 	{
-		if(check_comillas('\'', s, i)){
-			if(i == 0){
-				return check_comillas('\'', s, i);
-			}
+		if (check_comillas('\'', s, i))
+		{
+			if (i == 0)
+				return (check_comillas('\'', s, i));
 			return (ret);
 		}
-		if(check_comillas('\"', s, i)){
-			if(i == 0){
-				return check_comillas('\"', s, i);
-			}
+		if (check_comillas('\"', s, i))
+		{
+			if (i == 0)
+				return (check_comillas('\"', s, i));
 			return (ret);
 		}
-
 		ret++;
 		i++;
 	}
@@ -110,7 +123,8 @@ static char	*manage_malloc(char **res, const char *s, char c, int i)
 
 void static copy_word(char **ret, const char *s, char c, int *i, int *j)
 {
-	int comillas;
+	int	comillas;
+	
 	ret[*i] = manage_malloc(ret, &s[*j], c, *i);
 	if(!ret[*i])
 		return;

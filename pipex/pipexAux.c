@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 10:50:15 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/07/11 17:47:21 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/07/12 10:36:16 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ char	*find_path(char **envp, char *command)
 
 	i = 0;
 	ret = NULL;
-	
 	while (envp[i] != NULL && ft_strncmp(envp[i], "PATH=", 5) != 0)
 		i++;
 	paths = ft_split(envp[i] + 5, ':');
@@ -57,9 +56,8 @@ char	*find_path(char **envp, char *command)
 	{
 		if (j != -1)
 			path = ft_strjoin(paths[j], command);
-		if (check_access(path, &ret) == 0){
+		if (check_access(path, &ret) == 0)
 			break ;
-		}
 		j++;
 		free (path);
 	}
@@ -83,9 +81,8 @@ void	manage_child_fds(int i, int argc, t_data *d)
 	if (i == argc - 2)
 	{
 		close (d->fd[1]);
-		if (d->out_file == -1){
+		if (d->out_file == -1)
 			exit(1);
-		}
 		dup2(d->out_file, STDOUT_FILENO);
 		close(d->out_file);
 	}
