@@ -6,75 +6,18 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 10:36:29 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/07/12 10:39:35 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/07/12 12:05:50 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-static int	count_words(char const *s, char c)
-{
-	int	count;
-	int	found;
-	int	i;
-
-	i = 0;
-	found = 0;
-	count = 0;
-	while (s[i])
-	{
-		if (s[i] == '\'')
-		{
-			while (s[++i] && s[i] != '\'')
-				;
-			count++;
-			i++;
-		}
-		if (s[i] == '\"')
-		{
-			while (s[++i] && s[i] != '\"')
-				;
-			count++;
-			i++;
-		}
-		while (s[i] != c && s[i])
-		{
-			if (!found)
-			{
-				count++;
-				found = 1;
-			}
-			++i;
-		}
-		while (s[i] == c && s[i])
-		{
-			found = 0;
-			++i;
-		}
-	}
-	return (count);
-}
-
-int check_comillas(char c, const char *s, int i)
-{
-	int	j;
-
-	if (s[i] != c)
-		return (0);
-	j = i + 1;
-	while (s[j] && s[j] != c)
-		j++;
-	if (s[j] == c)
-		return (j - i);
-	return (0);
-}
 
 static int	word_size(const char *s, char c)
 {
 	int	ret;
 	int	i;
 
-	i = 0; 
+	i = 0;
 	ret = 0;
 	while (s[i] && s[i] != c)
 	{
@@ -121,31 +64,32 @@ static char	*manage_malloc(char **res, const char *s, char c, int i)
 	return (ret);
 }
 
-void static copy_word(char **ret, const char *s, char c, int *i, int *j)
+void static	copy_word(char **ret, const char *s, char c, int *indexes)
 {
 	int	comillas;
-	
-	ret[*i] = manage_malloc(ret, &s[*j], c, *i);
-	if(!ret[*i])
-		return;
-	comillas = (check_comillas('\'', s, *j) || check_comillas('\"', s, *j));
-	ret[*i] = ft_substr(s, (*j) + comillas, word_size(&s[*j], c) - comillas);
-	*j += word_size(&s[*j], c) + comillas;
-	*j += skip_char(&s[*j], c);
-	(*i)++;
+
+	ret[indexes[0]] = manage_malloc(ret, &s[indexes[1]], c, indexes[0]);
+	if (!ret[indexes[0]])
+		return ;
+	comillas = (check_comillas('\'', s, indexes[1]) || \
+		check_comillas('\"', s, indexes[1]));
+	ret[indexes[0]] = ft_substr(s, (indexes[1]) + comillas, \
+		word_size(&s[indexes[1]], c) - comillas);
+	indexes[1] += word_size(&s[indexes[1]], c) + comillas;
+	indexes[1] += skip_char(&s[indexes[1]], c);
+	(indexes[0])++;
 }
 
 char	**split_args(char const *s, char c)
 {
 	int		num_words;
 	char	**ret;
-	int		i;
-	int		j;
+	int		indexes[2];
 
 	if (!s)
 		return (NULL);
-	i = 0;
-	j = skip_char(&s[0], c);
+	indexes[0] = 0;
+	indexes[1] = skip_char(&s[0], c);
 	num_words = count_words(s, c) + 1;
 	ret = malloc((num_words) * sizeof(char *));
 	if (!ret)
@@ -153,18 +97,9 @@ char	**split_args(char const *s, char c)
 	ret[num_words - 1] = 0;
 	while (--num_words > 0)
 	{
-		copy_word(ret, s, c, &i, &j);
-		if (!ret[i - 1])
+		copy_word(ret, s, c, &indexes[0]);
+		if (!ret[indexes[0] - 1])
 			return (NULL);
 	}
 	return (ret);
-}
-
-
-char **parse_command(char *command)
-{
-	char **c;
-
-	c = split_args(command, ' ');
-	return (c);
 }

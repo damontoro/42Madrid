@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 10:41:18 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/07/12 10:34:42 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/07/12 11:48:51 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	main(int argc, char *const argv[], char *envp[])
 	while (i < argc - 1)
 	{
 		pipe(d.fd);
-		d.comm = parse_command(argv[i]);
+		d.comm = split_args(argv[i], ' ');
 		d.aux = ft_strjoin("/", d.comm[0]);
 		d.path = find_path(envp, d.aux);
 		manage_child(&d, argc, i, envp);

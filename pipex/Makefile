@@ -6,7 +6,7 @@
 #    By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 07:03:20 by dmontoro          #+#    #+#              #
-#    Updated: 2023/07/11 20:21:53 by dmontoro         ###   ########.fr        #
+#    Updated: 2023/07/12 12:06:33 by dmontoro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS	= pipex.c pipexAux.c pipexAux2.c
 
 OBJS	= ${SRCS:.c=.o}
 
-BNS_SRCS	= pipex.c pipexAux.c pipexAux2.c
+BNS_SRCS	= pipex.c pipexAux.c pipexAux2.c pipexAux3.c
 
 BNS_OBJS	= $(BNS_SRCS:.c=.o)
 
@@ -41,7 +41,7 @@ $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS) -Iincludes $(LIBFT) -o $(NAME)
 
 $(BONUS): $(BNS_OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(BNS_SRCS) -Iincludes $(LIBFT) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(CFLAGS) $(BNS_SRCS) -Iincludes $(LIBFT) -o $(NAME)
 
 $(LIBFT):
 	@make bonus -C ./libs/libft/

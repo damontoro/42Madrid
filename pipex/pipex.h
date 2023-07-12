@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 11:04:51 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/06/15 20:07:40 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/07/12 12:07:38 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct s_data{
 char	*find_path(char **envp, char *command);
 void	last_child(int i, int argc, t_data *d);
 void	manage_child_fds(int i, int argc, t_data *d);
-char	**parse_command(char *command);
+int		count_words(char const *s, char c);
+int		check_comillas(char c, const char *s, int i);
+char	**split_args(char const *s, char c);
 
 #endif
