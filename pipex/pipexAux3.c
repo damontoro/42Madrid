@@ -6,9 +6,11 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:50:07 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/07/13 11:20:32 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:13:03 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "pipex.h"
 
 static void	jump_quotes(char const *s, int *i, int *count)
 {
