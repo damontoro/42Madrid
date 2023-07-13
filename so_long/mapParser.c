@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 08:47:51 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/03/22 10:57:21 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/06/15 18:36:57 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int	check_map_form(int fd)
 	{
 		if (i == 0)
 			size = ft_strlen(line);
-		else if (size != (ft_strlen(line) + !(line[ft_strlen(line) - 1] == '\n')))
+		else if (size != (ft_strlen(line) + \
+				!(line[ft_strlen(line) - 1] == '\n')))
 			ft_error("Error: Map is not rectangular");
 		if (!check_content_line(line, i, 0))
 			ft_error("Error: Invalid character in map");
@@ -61,8 +62,8 @@ char	**load_map(int fd, int size, int *width)
 	int		i;
 
 	i = 0;
-	map = (char **)malloc(sizeof(char *) * (size + 1));
-	if(size == 0)
+	map = (char **) malloc(sizeof(char *) * (size + 1));
+	if (size == 0)
 		ft_error("Error: Map is empty");
 	if (!map)
 		ft_error("Error: Problems with memory allocation");

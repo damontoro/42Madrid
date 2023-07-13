@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 10:50:15 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/07/12 13:34:51 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/07/13 10:41:11 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	manage_child_fds(int i, int argc, t_data *d)
 	{
 		if (d->in_file < 0)
 		{
-			perror("Error: no such file or directory");
 			close(d->fd[1]);
 			if (d->out_file != -1)
 				close (d->out_file);

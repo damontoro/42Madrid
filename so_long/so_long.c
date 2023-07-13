@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 08:47:53 by dmontoro          #+#    #+#             */
-/*   Updated: 2022/12/08 13:27:47 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/06/15 18:36:12 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	loop_hook(t_controller *con)
 		ft_putstr_fd("You Win!\n", 1);
 		free_all(con);
 	}
-	update_player(*con);
 	return (0);
 }
 

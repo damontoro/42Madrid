@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 10:41:18 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/07/12 13:51:44 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/07/13 11:19:36 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ void	free_memoria(char **c, char *path, char *aux)
 
 void	ex_command(char *path, char **c, char **envp)
 {
-	c[0] = path;
 	if (!path)
 	{
-		perror("Error: command not found: invalid argument\n");
+		ft_putstr_fd("pipex: ", 2);
+		ft_putstr_fd(c[0], 2);
+		ft_putstr_fd(": command not found\n", 2);
 		exit(127);
 	}
 	if (execve(path, c, envp) == -1)
@@ -49,6 +50,8 @@ void	ini_data(t_data *d, char *const argv[], const int argc)
 	d->in_file = open(argv[1], O_RDONLY | O_CLOEXEC, 0600);
 	d->out_file = open(argv[argc - 1], O_CREAT | \
 	O_WRONLY | O_TRUNC | O_CLOEXEC, 0644);
+	if (d->in_file == -1)
+		perror("pipex: input");
 	if (d->in_file != -1)
 	{
 		dup2(d->in_file, STDIN_FILENO);
@@ -80,12 +83,12 @@ int	main(int argc, char *const argv[], char *envp[])
 	int		i;
 
 	if (!envp || !*envp)
-		exit(127);
-	if (argc < 5)
 	{
-		perror("Error: numero de argumentos incorrecto\n");
-		exit(1);
+		envp[0] = "PATH=/usr/bin:";
+		envp[1] = NULL;
 	}
+	if (argc < 5)
+		ft_error("Error: numero de argumentos incorrecto\n", 1);
 	ini_data(&d, argv, argc);
 	i = 2;
 	while (i < argc - 1)

@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 11:50:07 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/07/12 11:53:47 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/07/13 11:20:32 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,10 @@ int	check_comillas(char c, const char *s, int i)
 	if (s[j] == c)
 		return (j - i);
 	return (0);
+}
+
+void	ft_error(char *str, int code)
+{
+	perror(str);
+	exit(1);
 }
