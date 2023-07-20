@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/20 12:27:47 by dmontoro          #+#    #+#             */
+/*   Updated: 2023/07/20 13:13:36 by dmontoro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -10,16 +22,17 @@
 
 typedef struct s_stack
 {
-	int size;
-	t_list *top;
-	t_list *bottom;
+	int		size;
+	t_list	*top;
+	t_list	*bottom;
 }					t_stack;
 
 void	ft_error(char *str);
 int		ft_err_atoi(const char *str);
-void	parseArgs(t_stack *stack, int argc, char **argv);
+void	parse_args(t_stack *stack, int argc, char **argv);
 int		sorted(t_list *list);
 
+int		find_num(t_stack *a, int chunk, int chunk_size, int mode);
 int		find_min_index(t_stack *stack, int *m);
 int		find_max_index(t_stack *stack, int *m);
 int		find_min(t_stack *stack, int *m);
@@ -43,4 +56,4 @@ void	rr(t_stack *a, t_stack *b);
 void	rrotate(t_stack *stack, int c);
 void	rrr(t_stack *a, t_stack *b);
 
-# endif
+#endif

@@ -6,18 +6,18 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 06:57:21 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/07/20 10:02:42 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/07/20 13:20:51 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int find_min(t_stack *a, int *m)
+int	find_min(t_stack *a, int *m)
 {
-	int min;
-	int pos;
-	int ret;
-	t_list *tmp;
+	int		min;
+	int		pos;
+	int		ret;
+	t_list	*tmp;
 
 	pos = 0;
 	ret = 0;
@@ -25,7 +25,8 @@ int find_min(t_stack *a, int *m)
 	min = tmp->content;
 	while (tmp != NULL)
 	{
-		if (tmp->content < min){
+		if (tmp->content < min)
+		{
 			min = tmp->content;
 			ret = pos;
 		}
@@ -36,12 +37,12 @@ int find_min(t_stack *a, int *m)
 	return (ret);
 }
 
-int find_min_index(t_stack *a, int *m)
+int	find_min_index(t_stack *a, int *m)
 {
-	int min;
-	int pos;
-	int ret;
-	t_list *tmp;
+	int		min;
+	int		pos;
+	int		ret;
+	t_list	*tmp;
 
 	pos = 0;
 	ret = 0;
@@ -49,7 +50,8 @@ int find_min_index(t_stack *a, int *m)
 	min = tmp->index;
 	while (tmp != NULL)
 	{
-		if (tmp->index < min){
+		if (tmp->index < min)
+		{
 			min = tmp->index;
 			ret = pos;
 		}
@@ -60,19 +62,20 @@ int find_min_index(t_stack *a, int *m)
 	return (ret);
 }
 
-int find_max(t_stack *a, int *m)
+int	find_max(t_stack *a, int *m)
 {
-	int max;
-	int pos;
-	int ret;
-	t_list *tmp;
+	int		max;
+	int		pos;
+	int		ret;
+	t_list	*tmp;
 
 	pos = 0;
 	tmp = a->top;
 	max = tmp->content;
 	while (tmp != NULL)
 	{
-		if (tmp->content > max){
+		if (tmp->content > max)
+		{
 			max = tmp->content;
 			ret = pos;
 		}
@@ -83,12 +86,12 @@ int find_max(t_stack *a, int *m)
 	return (ret);
 }
 
-int find_max_index(t_stack *a, int *m)
+int	find_max_index(t_stack *a, int *m)
 {
-	int max;
-	int pos;
-	int ret;
-	t_list *tmp;
+	int		max;
+	int		pos;
+	int		ret;
+	t_list	*tmp;
 
 	pos = 0;
 	tmp = a->top;
@@ -108,16 +111,17 @@ int find_max_index(t_stack *a, int *m)
 }
 
 //this returns the minimum number that is greater than the given min
-int find_next_min(t_stack *a, int min)
+int	find_next_min(t_stack *a, int min)
 {
-	int ret;
-	t_list *tmp;
+	int		ret;
+	t_list	*tmp;
 
 	tmp = a->top;
 	find_max(a, &ret);
 	while (tmp != NULL)
 	{
-		if (tmp->content > min && tmp->content < ret){
+		if (tmp->content > min && tmp->content < ret)
+		{
 			ret = tmp->content;
 		}
 		tmp = tmp->next;
