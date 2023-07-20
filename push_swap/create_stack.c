@@ -1,5 +1,5 @@
 #define START_POINT 1
-#define ARRAY_SIZE 50
+#define ARRAY_SIZE 10
 
 #include "libs/libft/libft.h"
 #include <fcntl.h>

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/20 08:11:15 by dmontoro          #+#    #+#             */
+/*   Updated: 2023/07/20 10:59:04 by dmontoro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void freeSplit(char **strs){
@@ -17,7 +29,7 @@ static void searchRepetition(t_list *top, int num){
 	tmp = top;
 	while(tmp != NULL){
 		if(tmp->content == num)
-			ft_error("Hay un numero repetido\n");
+			ft_error("Error\n");
 		tmp = tmp->next;
 	}
 }
@@ -30,7 +42,8 @@ void parseArgs(t_stack *stack, int argc, char **argv){
 	t_list	*tmp;
 
 	i = 1;
-	while(i < argc){
+	while(i < argc)
+	{
 		j = 0;
 		strs = ft_split(argv[i], ' ');
 		while (strs[j] != NULL)
@@ -44,16 +57,21 @@ void parseArgs(t_stack *stack, int argc, char **argv){
 		freeSplit(strs);
 		i++;
 	}
-	tmp = stack->top;
-	while(tmp->next != NULL)
-		tmp = tmp->next;
-	stack->bottom = tmp;
+	if (stack->top != NULL)
+	{
+		tmp = stack->top;
+		while (tmp->next != NULL)
+			tmp = tmp->next;
+		stack->bottom = tmp;
+	}
 }
 
 int	sorted(t_list *top)
 {
 	t_list *tmp;
 
+	if(top == NULL)
+		return (1);
 	tmp = top;
 	while (tmp->next != NULL)
 	{

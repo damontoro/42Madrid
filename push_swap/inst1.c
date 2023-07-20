@@ -1,14 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   inst1.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/20 08:45:43 by dmontoro          #+#    #+#             */
+/*   Updated: 2023/07/20 09:23:16 by dmontoro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void swap(t_stack *stack, char c)
 {
-	int tmp;
+	int elem;
+	int index;
 
 	if (stack->size > 1)
 	{
-		tmp = stack->top->content;
+		elem = stack->top->content;
+		index = stack->top->index;
 		stack->top->content = stack->top->next->content;
-		stack->top->next->content = tmp;
+		stack->top->index = stack->top->next->index;
+		stack->top->next->content = elem;
+		stack->top->next->index = index;
 		
 	}
 	if(c == 0)
@@ -33,17 +49,24 @@ void push(t_stack *from, t_stack *to, char c)
 	{
 		tmp = from->top;
 		from->top = from->top->next;
+		if(from->top)
+			from->top->prior = NULL;
+		else
+			from->bottom = NULL;
 		from->size--;
 		if (to->size == 0)
 		{
 			to->top = tmp;
 			to->bottom = tmp;
 			tmp->next = NULL;
+			tmp->prior = NULL;
 		}
 		else
 		{
 			tmp->next = to->top;
+			to->top->prior = tmp;
 			to->top = tmp;
+			tmp->prior = NULL;
 		}
 		to->size++;
 	}
@@ -63,8 +86,10 @@ void rotate(t_stack *stack, char c)
 		tmp = stack->top;
 		stack->top = tmp->next;
 		stack->bottom->next = tmp;
+		tmp->prior = stack->bottom;
 		stack->bottom = tmp;
 		stack->bottom->next = NULL;
+		stack->top->prior = NULL;
 	}
 	if(c == 0)
 		return ;
@@ -82,23 +107,18 @@ void rr(t_stack *a, t_stack *b)
 
 void rrotate(t_stack *stack, int c)
 {
-	t_list *tmp;
-	t_list *tmp2;
-
 	if (stack->size > 1)
 	{
-		tmp = stack->top;
-		while (tmp->next != stack->bottom)
-			tmp = tmp->next;
-		tmp2 = stack->bottom;
-		stack->bottom = tmp;
+		stack->top->prior = stack->bottom;
+		stack->bottom->next = stack->top;
+		stack->bottom = stack->bottom->prior;
 		stack->bottom->next = NULL;
-		tmp2->next = stack->top;
-		stack->top = tmp2;
+		stack->top = stack->top->prior;
+		stack->top->prior = NULL;
 	}
 	if(c == 0)
 		return ;
-	ft_putstr_fd("rr", 2);
+	ft_putstr_fd("rr", 1);
 	ft_putchar_fd(c, 1);
 	ft_putchar_fd('\n', 1);
 }

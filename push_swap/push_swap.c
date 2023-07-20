@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 08:28:20 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/07/12 09:16:58 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:01:06 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int main(int argc, char **argv)
 {
 	t_stack *stack_a;
 	t_stack *stack_b;
-	//t_list *tmp;
 
 
 	stack_a = (t_stack *)calloc(1, (sizeof(t_stack)));
@@ -33,14 +32,9 @@ int main(int argc, char **argv)
 		else
 			big_sort(stack_a, stack_b);
 	}
-	// tmp = stack_a->top;
-	// while(tmp != NULL){
-	// 	printf("%d\n", tmp->content);
-	// 	tmp = tmp->next;
-	// }
 	ft_lstclear(&stack_a->top);
-	free(stack_a);
 	ft_lstclear(&stack_b->top);
+	free(stack_a);
 	free(stack_b);
 	return (0);
 }

@@ -36,8 +36,8 @@ void sort5(t_stack *a, t_stack *b, int i)
 
 	while (i < 2)
 	{
-		min = find_min(a, &juju);
-		moveto_first(a, min);
+		min = find_min_index(a, &juju);
+		moveto_first(a, min,'a');
 		push(a, b, 'b');
 		i++;
 	}

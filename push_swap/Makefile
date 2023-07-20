@@ -6,7 +6,7 @@
 #    By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 07:03:20 by dmontoro          #+#    #+#              #
-#    Updated: 2023/07/12 09:20:40 by dmontoro         ###   ########.fr        #
+#    Updated: 2023/07/20 07:10:05 by dmontoro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CFLAGS	= -g3 -O0 -D BUFFER_SIZE=42 -Wall -Werror -Wextra
 
 RM	= rm -f
 
-SRCS	= push_swap.c parse.c smallsort.c bigsort.c inst1.c inst2.c utils1.c
+SRCS	= push_swap.c parse.c smallsort.c bigsort.c inst1.c inst2.c utils1.c inserts.c
 
 OBJ	= ${SRCS:.c=.o}
 
