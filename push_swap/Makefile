@@ -6,7 +6,7 @@
 #    By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 07:03:20 by dmontoro          #+#    #+#              #
-#    Updated: 2023/07/20 12:49:12 by dmontoro         ###   ########.fr        #
+#    Updated: 2023/07/22 09:43:49 by dmontoro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,13 +45,8 @@ all:		${NAME}
 bonus:		all ${OBJB}
 				@make OBJ="${OBJB}"
 
-stack: ${LIBFTPATH}
-	$(CC) -o create_stack create_stack.c ${LIBFTPATH}
-	./create_stack a.txt
-	$(RM) create_stack
-
-pswap:
-	ARG=$$(cat a.txt); ./push_swap $$ARG | ./checker_Mac $$ARG
+test:
+	  ARG=`ruby -e "puts (-20..499).to_a.shuffle.join(' ')"`; echo $$ARG > arg.txt; ./push_swap $$ARG | ./checker_Mac $$ARG
 
 clean:
 				${RM} ${OBJ} ${OBJB}
