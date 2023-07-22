@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 08:51:02 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/07/20 12:39:04 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/07/22 09:55:42 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,9 @@ void	big_sort(t_stack *a, t_stack *b)
 	if (a->size <= 100)
 		chunk_size = a->size / 5;
 	else if (a->size <= 500)
-		chunk_size = a->size / 15;
+		chunk_size = a->size / 11;
+	else
+		chunk_size = a->size / 20;
 	current_chunk = 0;
 	while (a->size > 0)
 	{
