@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 10:36:29 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/07/12 13:50:56 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/07/23 10:55:44 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,6 @@ static int	skip_char(char const *s, char c)
 	while (s[i] == c && s[i])
 		i++;
 	return (i);
-}
-
-static char	*manage_malloc(char **res, const char *s, char c, int i)
-{
-	char	*ret;
-
-	ret = malloc((word_size(s, c) + 1) * sizeof(char));
-	if (!ret)
-	{
-		while (i-- > 0)
-			free(res[i]);
-		free(res);
-		return (NULL);
-	}
-	return (ret);
 }
 
 void static	copy_word(char **ret, const char *s, char c, int *indexes)

@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 10:41:18 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/07/13 13:46:29 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/07/23 10:56:45 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	main(int argc, char *const argv[], char *envp[])
 		envp[1] = NULL;
 	}
 	if (argc < 5)
-		ft_error("Error: numero de argumentos incorrecto\n", 1);
+		ft_error("Error: numero de argumentos incorrecto\n");
 	ini_data(&d, argv, argc);
 	i = 2;
 	while (i < argc - 1)

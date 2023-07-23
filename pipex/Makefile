@@ -6,7 +6,7 @@
 #    By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 07:03:20 by dmontoro          #+#    #+#              #
-#    Updated: 2023/07/13 11:10:22 by dmontoro         ###   ########.fr        #
+#    Updated: 2023/07/23 10:55:20 by dmontoro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= pipex
 
 CC	= gcc
 
-CFLAGS	= -g3 -O0 -D BUFFER_SIZE=42 #-Wall -Werror -Wextra #-fsanitize=address
+CFLAGS	= -g3 -O0 -D BUFFER_SIZE=42 -Wall -Werror -Wextra #-fsanitize=address
 
 RM	= rm -f
 
