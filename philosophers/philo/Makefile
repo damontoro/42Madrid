@@ -6,11 +6,11 @@
 #    By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/23 10:54:46 by dmontoro          #+#    #+#              #
-#    Updated: 2023/07/23 10:59:26 by dmontoro         ###   ########.fr        #
+#    Updated: 2023/08/03 13:07:21 by dmontoro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= pipex
+NAME	= philo
 
 CC	= gcc
 
@@ -18,7 +18,8 @@ CFLAGS	= -g3 -O0 -Wall -Werror -Wextra #-fsanitize=address
 
 RM	= rm -f
 
-SRCS	= philo.c #../leak_detector_c/leak_detector_c.c
+SRCS	= philo.c thread_functions.c utils.c \
+			ft_isspace.c ft_strlen.c #../leak_detector_c/leak_detector_c.c
 
 OBJS	= ${SRCS:.c=.o}
 
