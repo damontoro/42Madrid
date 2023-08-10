@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:29:04 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/08/10 08:33:48 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/08/10 10:48:38 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@
 //18 * 8 bytes 144 bytes	
 typedef struct s_filo {
 	int				id;
-	int				t_start;
+	time_t			t_start;
 	int				t_die;
 	int				t_eat;
 	int				t_sleep;
 	int				n_eat; //numero de veces que tiene que comer
 	int				eaten; //numero de veces que ha comido
-	int				last_eat; //el ultimo momento en el que comio
+	time_t			last_eat; //el ultimo momento en el que comio
 	int				*full; //same for all filos
 	int				*dead; //same for all filos
 
@@ -44,7 +44,7 @@ typedef struct s_filo {
 
 typedef struct s_table{
 	int				n_philo;
-	int				t_start;
+	time_t			t_start;
 	int				t_die;
 	int				t_eat;
 	int				t_sleep;
@@ -69,14 +69,13 @@ int		eat(t_philo *philo);
 void	think(t_philo *philo);
 void	sleep_(t_philo *philo);
 
-int		check_dead(t_philo *philo);
-int		ft_time(void);
+void		print_and_wait(char c, int id, time_t t_start, time_t wait_time);
+int			check_dead(t_philo *philo);
+time_t		ft_time(void);
 
 int		ft_err_atoi(const char *str);
 int		ft_isspace(int c);
 size_t	ft_strlen(const char *s);
-
-
 
 
 #endif

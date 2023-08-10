@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 10:58:40 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/08/10 08:38:30 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/08/10 10:52:28 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ t_table	parse_table(int argc, char **argv)
 	t_table	ret;
 
 	memset(&ret, 0, sizeof(t_table));
-	ret.t_start = ft_time();
 	ret.n_philo = ft_err_atoi(argv[1]);
 	ret.t_die = ft_err_atoi(argv[2]);
 	ret.t_eat = ft_err_atoi(argv[3]);
@@ -103,6 +102,7 @@ t_table	parse_table(int argc, char **argv)
 	ret.full = 0;
 	pthread_mutex_init(&ret.dead_mutex, NULL);
 	pthread_mutex_init(&ret.full_mutex, NULL);
+	ret.t_start = ft_time();
 	return (ret);
 }
 
@@ -113,7 +113,8 @@ t_philo	*create_philo(t_table *table, int id)
 	ret = malloc(sizeof(t_philo));
 	memset(ret, 0, sizeof(t_philo)); //para fork, eaten y last_eaten
 	ret->id = id;
-	ret->t_start = ft_time();
+	ret->t_start = table->t_start;
+	ret->last_eat = table->t_start;
 	ret->t_die = table->t_die;
 	ret->t_eat = table->t_eat;
 	ret->t_sleep = table->t_sleep;
