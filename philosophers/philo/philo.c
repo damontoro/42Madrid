@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 10:58:40 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/08/10 10:52:28 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/08/10 12:12:02 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,14 @@ int	main(int argc, char **argv)
 {
 	t_table	table;
 
+	if (argc < 5 || argc > 6)
+	{
+		printf("Error: Wrong number of arguments\n");
+		printf("Usage: ./philo n_philo t_die t_eat t_sleep [n_eat]\n");
+		return (1);
+	}
 	table = parse_table(argc, argv);
+	check_data(&table, argc);
 	table.philo_data = ini_philos(table);
 	launch_threads(table);
 	return (0);

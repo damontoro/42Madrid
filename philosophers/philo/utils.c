@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 07:36:09 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/08/10 10:55:25 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/08/10 12:15:15 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,24 @@ void	print_and_wait(char c, int id, time_t t_start, time_t wait_time)
 	else if (c == 't')
 		printf("%ld : Philo %d is thinking\n", ft_time() - t_start, id);
 	else if (c == 'd')
-		printf("%ld : Philo %d is dead\n", ft_time() - t_start, id);
+		printf("%ld : Philo %d died\n", ft_time() - t_start, id);
 
 	start = ft_time();
 	while (ft_time() - start < wait_time)
 		usleep(100);
+}
+
+void	check_data(t_table *table, int argc)
+{
+	if (table->n_philo < 1|| table->t_die < 0 || table->t_eat < 0
+		|| table->t_sleep < 0)
+	{
+		printf("Error: negative values\n");
+		exit(1);
+	}
+	if (argc == 6 && table->n_eat <= 0)
+	{
+		printf("Error: n_eat can't be <= 0\n");
+		exit(1);
+	}
 }

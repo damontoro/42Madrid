@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:29:04 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/08/10 10:48:38 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/08/10 12:12:56 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void		print_and_wait(char c, int id, time_t t_start, time_t wait_time);
 int			check_dead(t_philo *philo);
 time_t		ft_time(void);
 
+void	check_data(t_table *table, int argc);
 int		ft_err_atoi(const char *str);
 int		ft_isspace(int c);
 size_t	ft_strlen(const char *s);
