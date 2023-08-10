@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:29:04 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/08/10 07:34:39 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/08/10 08:33:48 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 //18 * 8 bytes 144 bytes	
 typedef struct s_filo {
 	int				id;
+	int				t_start;
 	int				t_die;
 	int				t_eat;
 	int				t_sleep;
@@ -33,7 +34,7 @@ typedef struct s_filo {
 	int				*full; //same for all filos
 	int				*dead; //same for all filos
 
-	int				fork[2];
+	int				*fork[2];
 	pthread_mutex_t	*right; //for fork[0] 
 	pthread_mutex_t	left; //for fork[1] (mine)
 	pthread_mutex_t	data_mutex; //for last_eat
@@ -43,6 +44,7 @@ typedef struct s_filo {
 
 typedef struct s_table{
 	int				n_philo;
+	int				t_start;
 	int				t_die;
 	int				t_eat;
 	int				t_sleep;
@@ -61,6 +63,13 @@ typedef struct s_table{
 void	*philo_routine(void *t_philo);
 void	monitor(t_table *table);
 
+int		take_forks(t_philo *philo);
+void	release_forks(t_philo *philo);
+int		eat(t_philo *philo);
+void	think(t_philo *philo);
+void	sleep_(t_philo *philo);
+
+int		check_dead(t_philo *philo);
 int		ft_time(void);
 
 int		ft_err_atoi(const char *str);

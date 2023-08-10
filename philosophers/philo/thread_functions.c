@@ -6,11 +6,23 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:57:52 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/08/10 07:45:04 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/08/10 08:27:13 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	check_dead(t_philo *philo)
+{
+	pthread_mutex_lock(philo->dead_mutex);
+		if (*philo->dead == 1)
+		{
+			pthread_mutex_unlock(philo->dead_mutex);
+			return (1);
+		}
+	pthread_mutex_unlock(philo->dead_mutex);
+	return (0);
+}
 
 void	*philo_routine(void *data)
 {
@@ -19,28 +31,18 @@ void	*philo_routine(void *data)
 	philo = (t_philo *)data;
 	while(1)
 	{
-		pthread_mutex_lock(philo->dead_mutex);
-		if (*philo->dead == 1)
+		if(check_dead(philo))
+			break ;
+		if(!take_forks(philo))
+			continue ;
+		if(eat(philo))
 		{
-			pthread_mutex_unlock(philo->dead_mutex);
+			release_forks(philo);
 			break ;
 		}
-		pthread_mutex_unlock(philo->dead_mutex);
-
-		philo->eaten++;
-		pthread_mutex_lock(&philo->data_mutex);
-		philo->last_eat = ft_time();
-		pthread_mutex_unlock(&philo->data_mutex);
-		printf("Soy el philo: %d y he comido: %d\n", philo->id, philo->eaten);
-
-		
-		if(philo->eaten == 20){
-			pthread_mutex_lock(philo->full_mutex);
-			*philo->full = *philo->full + 1;
-			pthread_mutex_unlock(philo->full_mutex);
-			break;
-		}
-		usleep(philo->t_eat * 1000);
+		release_forks(philo);
+		think(philo);
+		sleep_(philo);
 	}
 	return (NULL);
 }

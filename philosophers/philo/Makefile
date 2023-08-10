@@ -6,7 +6,7 @@
 #    By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/23 10:54:46 by dmontoro          #+#    #+#              #
-#    Updated: 2023/08/10 07:36:01 by dmontoro         ###   ########.fr        #
+#    Updated: 2023/08/10 08:10:58 by dmontoro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,15 +18,14 @@ CFLAGS	= -g3 -O0 -Wall -Werror -Wextra  #-fsanitize=thread #-fsanitize=address
 
 RM	= rm -f
 
-SRCS	= philo.c thread_functions.c ft_err_atoi.c \
-			utils.c #../leak_detector_c/leak_detector_c.c
+SRCS	= philo.c thread_functions.c philo_actions.c \
+			ft_err_atoi.c utils.c #../leak_detector_c/leak_detector_c.c
 
 OBJS	= ${SRCS:.c=.o}
 
 BNS_SRCS	= philo.c
 
 BNS_OBJS	= $(BNS_SRCS:.c=.o)
-
 
 BONUS = .
 
