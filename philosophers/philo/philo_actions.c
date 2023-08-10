@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 08:07:13 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/08/10 10:48:54 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/08/10 13:22:18 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	think(t_philo *philo)
 {
 	if(check_dead(philo))
 		return ;
-	print_and_wait('t', philo->id, philo->t_start, 0);
+	print_and_wait('t', philo->id, philo->t_start, (philo->t_die - (philo->t_eat + philo->t_sleep)) / 2);
 }
 
 void	sleep_(t_philo *philo)

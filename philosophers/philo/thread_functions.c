@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:57:52 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/08/10 10:49:36 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/08/10 13:13:00 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	*philo_routine(void *data)
 	int		end;
 
 	philo = (t_philo *)data;
+
 	while (1)
 	{
 		if (check_dead(philo))
