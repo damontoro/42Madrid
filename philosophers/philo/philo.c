@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 10:58:40 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/08/03 13:02:03 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/08/10 07:33:56 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	launch_threads(t_table table)
 		pthread_create(&threads[i], 0, philo_routine, table.philo_data[i]);
 		i++;
 	}
+	monitor(&table);
 	i = 0;
 	while (i < table.n_philo)
 	{
@@ -95,8 +96,8 @@ t_table	parse_table(int argc, char **argv)
 	ret.start = 1;
 	ret.dead = 0;
 	ret.full = 0;
-	pthread_mutex_init(ret.dead_mutex, 0);
-	pthread_mutex_init(ret.full_mutex, 0);
+	pthread_mutex_init(&ret.dead_mutex, NULL);
+	pthread_mutex_init(&ret.full_mutex, NULL);
 	return (ret);
 }
 
@@ -113,10 +114,10 @@ t_philo	*create_philo(t_table *table, int id)
 	ret->n_eat = table->n_eat;
 	ret->full = &table->full;
 	ret->dead = &table->dead;
-	pthread_mutex_init(ret->left, 0);
-	pthread_mutex_init(ret->data_mutex, 0);
-	ret->full_mutex = table->full_mutex;
-	ret->dead_mutex = table->dead_mutex;
+	pthread_mutex_init(&ret->left, NULL);
+	pthread_mutex_init(&ret->data_mutex, NULL);
+	ret->full_mutex = &table->full_mutex;
+	ret->dead_mutex = &table->dead_mutex;
 	return (ret);
 }
 
@@ -137,7 +138,7 @@ t_philo	**ini_philos(t_table table)
 	i = 0;
 	while (i < table.n_philo)
 	{
-		ret[i]->right = ret[(i + 1) % table.n_philo]->left;
+		ret[i]->right = &ret[(i + 1) % table.n_philo]->left;
 		i++;
 	}
 	return (ret);

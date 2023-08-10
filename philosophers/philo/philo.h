@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:29:04 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/08/03 13:06:42 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/08/10 07:34:39 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ typedef struct s_filo {
 
 	int				fork[2];
 	pthread_mutex_t	*right; //for fork[0] 
-	pthread_mutex_t	*left; //for fork[1] (mine)
-	pthread_mutex_t	*data_mutex; //for last_eat
+	pthread_mutex_t	left; //for fork[1] (mine)
+	pthread_mutex_t	data_mutex; //for last_eat
 	pthread_mutex_t *full_mutex; //for full
 	pthread_mutex_t	*dead_mutex; //for dead
 }					t_philo;
@@ -53,14 +53,17 @@ typedef struct s_table{
 	int				start;
 
 	pthread_mutex_t	*print;
-	pthread_mutex_t	*dead_mutex;
-	pthread_mutex_t	*full_mutex;
+	pthread_mutex_t	dead_mutex;
+	pthread_mutex_t	full_mutex;
 	t_philo			**philo_data; //to access last_eaten
 }					t_table;
 
+void	*philo_routine(void *t_philo);
+void	monitor(t_table *table);
+
+int		ft_time(void);
 
 int		ft_err_atoi(const char *str);
-void	*philo_routine(void *t_philo);
 int		ft_isspace(int c);
 size_t	ft_strlen(const char *s);
 
