@@ -6,7 +6,7 @@
 #    By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/14 07:03:20 by dmontoro          #+#    #+#              #
-#    Updated: 2023/07/23 10:55:20 by dmontoro         ###   ########.fr        #
+#    Updated: 2023/09/28 19:06:07 by dmontoro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,11 @@ SRCS	= pipex.c pipexAux.c pipexAux2.c pipexAux3.c #../leak_detector_c/leak_detec
 
 OBJS	= ${SRCS:.c=.o}
 
-BNS_SRCS	= pipex.c pipexAux.c pipexAux2.c pipexAux3.c
+BNS_SRCS	= pipex_bonus.c pipexAux_bonus.c pipexAux2_bonus.c pipexAux3_bonus.c
 
 BNS_OBJS	= $(BNS_SRCS:.c=.o)
 
-LIBFT   =  ./libs/libft/libft.a
+LIBFT   =  ./libft/libft.a
 
 BONUS = .
 
@@ -44,15 +44,15 @@ $(BONUS): $(BNS_OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(BNS_SRCS) -Iincludes $(LIBFT) -o $(NAME)
 
 $(LIBFT):
-	@make bonus -C ./libs/libft/
+	@make bonus -C ./libft/
 
 clean:
-	@rm -rf $(OBJS)
+	@rm -rf $(OBJS) $(BNS_OBJS)
 	@echo "cleaning .o files"
-	@make clean -C ./libs/libft/
+	@make clean -C ./libft/
 
 fclean: clean
-	@make fclean -C ./libs/libft/
+	@make fclean -C ./libft/
 	@rm -rf $(NAME)
 
 re: 		fclean all
