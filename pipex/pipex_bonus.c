@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 10:41:18 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/09/28 19:04:13 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/09/28 19:04:03 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -88,7 +88,7 @@ int	main(int argc, char *const argv[], char *envp[])
 		envp[0] = "PATH=/usr/bin:";
 		envp[1] = NULL;
 	}
-	if (argc != 5)
+	if (argc < 5)
 		ft_error("Error: numero de argumentos incorrecto\n");
 	ini_data(&d, argv, argc);
 	i = 2;
