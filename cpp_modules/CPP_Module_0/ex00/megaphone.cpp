@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 09:54:31 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/10/02 10:02:55 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:50:08 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,14 @@ int main(int argc, char **argv)
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
 	else
 	{
+		std::string s;
 		for (int i = 1; i < argc; i++)
 		{
-			for (int j = 0; argv[i][j]; j++)
-				std::cout << (char)std::toupper(argv[i][j]);
+			s = argv[i];
+			transform(s.begin(), s.end(), s.begin(), ::toupper);
+			std::cout << s;
+			if (i < argc - 1)
+				std::cout << " ";
 		}
 	}
 	std::cout << std::endl;

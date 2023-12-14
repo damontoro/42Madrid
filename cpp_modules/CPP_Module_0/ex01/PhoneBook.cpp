@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 10:13:30 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/10/02 10:44:01 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/12/14 18:56:36 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <iomanip>
 #include <math.h>
 #include "PhoneBook.hpp"
+
+const int PhoneBook::MAX_CONTACTS;
 
 PhoneBook::PhoneBook()
 {
@@ -25,8 +27,24 @@ PhoneBook::~PhoneBook(){}
 
 void PhoneBook::get_data(std::string& s){
 	s = "";
-	while(s == "")
-		std::cin >> s;
+	while(s == ""){
+		if (!std::getline(std::cin, s))
+			exit(1);
+	}
+}
+
+void PhoneBook::get_data(int &n){
+	std::string s = "";
+	while(s == ""){
+		if (!std::getline(std::cin, s))
+			exit(1);
+	}
+	try{
+		n = std::stoi(s);
+	}catch(std::exception &e){
+		std::cout << "Invalid input, try again: ";
+		get_data(n);
+	}
 }
 
 void PhoneBook::ADD()
@@ -34,7 +52,7 @@ void PhoneBook::ADD()
 	std::string first_name = "";
 	std::string last_name = "";
 	std::string nickname = "";
-	std::string phone_number = "";
+	int phone_number;
 	std::string darkest_secret = "";
 	
 	std::cout << "First name: ";
@@ -55,8 +73,8 @@ void PhoneBook::show_data()
 {
 	for(int i = 0; i < this->contacts_count; i++)
 	{
-		std::cout << std::setw(10) << std::right << i << "|";
-		std::cout << std::setw(10) << std::right << this->contacts[i].get_first_name() << "|";
+		std::cout << std::setw(10) << std::right << trunc(i) << "|";
+		std::cout << std::setw(10) << std::right <<	this->contacts[i].get_first_name() << "|";
 		std::cout << std::setw(10) << std::right << this->contacts[i].get_last_name() << "|";
 		std::cout << std::setw(10) << std::right << this->contacts[i].get_nickname() << std::endl;
 	}
