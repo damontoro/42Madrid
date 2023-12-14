@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 10:58:40 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/12/14 11:30:16 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/12/14 17:52:10 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,42 +17,6 @@ t_philo	*create_philo(t_table *table, int id);
 t_philo	**ini_philos(t_table table);
 void	launch_threads(t_table table);
 
-/*
-	La funcion de cada filosofo va a ser:
-		cada filosofo va a comprobar si ha muerto alguien antes de printear con la variable dead
-		cada filosofo va a llevar la cuenta de cuantas veces ha comido con la variable eaten y va a sumar uno a full si ha comido n_eat veces
-		cada filosofo tendrá en su array forks 1 si tiene cogido el tenedor y 0 si no, este array estará compartido entre filosofos, es decir
-			el fork[1] del filosofo N será el fork[0] del N + 1
-		cuando un filosofo coma, intentará coger los tenedores y si lo consigue cogera el mutex de datos, actualizara last eaten y comera, y comprobara si tiene que sumar a full
-		si no lo consigue, seguirá intentandolo hasta que pueda.
-
-		la funcion de cada filosofo será:
-			1. comprobar si ha muerto alguien
-			2. coger los tenedores
-			3. comer
-			4. soltar los tenedores
-			5. comprobar si ha comido n_eat veces
-			6. dormir
-			7. pensar
-
-		Antes de cada subcosa, comprobará si alguien ha muerto para terminar su ejecución en ese momento y no imprimir nada
-
-	La función de la tabla será:
-		Comprobar si ha muerto algun filosofo constantemente y actualiazr el valor de dead, para esto cogera los mutex de data de ese filosofo y de dead
-		Imprimir mensajes(?)
-		Y creo que nada mas
-	
-	Cada filosofo será un hilo y la tabla estará en el hilo principal a modo de "monitor"
-
-
-	HAY QUE LIBERAR LOS FILOSOFOS Y DENTRO DE CADA FILOSOFO SU TENEDOR (POS 1)
-
-*/ 
-
-
-//Los filos están en memoria estatica pero los punteros en dinamica para poder hacer un array dinamico
-
-//Falt filo_data y print
 int	main(int argc, char **argv)
 {
 	t_table	table;
@@ -64,7 +28,8 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	table = parse_table(argc, argv);
-	check_data(&table, argc);
+	if (check_data(&table, argc))
+		return (1);
 	table.philo_data = ini_philos(table);
 	launch_threads(table);
 	return (0);
@@ -120,7 +85,7 @@ t_philo	*create_philo(t_table *table, int id)
 	t_philo	*ret;
 
 	ret = malloc(sizeof(t_philo));
-	memset(ret, 0, sizeof(t_philo)); //para fork, eaten y last_eaten
+	memset(ret, 0, sizeof(t_philo));
 	ret->id = id;
 	ret->t_start = table->t_start;
 	ret->last_eat = table->t_start;
@@ -143,7 +108,7 @@ t_philo	*create_philo(t_table *table, int id)
 t_philo	**ini_philos(t_table table)
 {
 	t_philo	**ret;
-	int			i;
+	int		i;
 
 	ret = malloc(table.n_philo * sizeof(t_philo *));
 	i = 0;
@@ -152,7 +117,6 @@ t_philo	**ini_philos(t_table table)
 		ret[i] = create_philo(&table, i + 1);
 		i++;
 	}
-	//Ahora queda asignar left a cada filosofo
 	i = 0;
 	while (i < table.n_philo)
 	{

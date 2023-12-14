@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:57:52 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/12/14 11:33:29 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/12/14 18:01:57 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,22 @@
 int	check_dead(t_philo *philo)
 {
 	pthread_mutex_lock(philo->dead_mutex);
-		if (*philo->dead == 1)
-		{
-			pthread_mutex_unlock(philo->dead_mutex);
-			return (1);
-		}
+	if (*philo->dead == 1)
+	{
+		pthread_mutex_unlock(philo->dead_mutex);
+		return (1);
+	}
 	pthread_mutex_unlock(philo->dead_mutex);
 	return (0);
+}
+
+void	table_check_death(t_table *table, int i)
+{
+	pthread_mutex_lock(&table->dead_mutex);
+	table->dead = 1;
+	pthread_mutex_unlock(&table->dead_mutex);
+	printf("%ld : Philo %d died\n", \
+		ft_time() - table->t_start, i + 1);
 }
 
 void	*philo_routine(void *data)
@@ -30,7 +39,6 @@ void	*philo_routine(void *data)
 	int		end;
 
 	philo = (t_philo *)data;
-
 	while (1)
 	{
 		if (check_dead(philo))
@@ -61,23 +69,18 @@ void	monitor(t_table *table)
 			break ;
 		}
 		pthread_mutex_unlock(&table->full_mutex);
-		while(i < table->n_philo)
+		while (i < table->n_philo)
 		{
 			pthread_mutex_lock(&table->philo_data[i]->data_mutex);
-			if(ft_time() - table->philo_data[i]->last_eat > table->t_die)
+			if (ft_time() - table->philo_data[i]->last_eat > table->t_die)
 			{
-				pthread_mutex_lock(&table->dead_mutex);
-				table->dead = 1;
-				pthread_mutex_unlock(&table->dead_mutex);
-				print_and_wait('d', table->philo_data[i]->id, table->t_start, 0);
 				pthread_mutex_unlock(&table->philo_data[i]->data_mutex);
-				break ;
+				table_check_death(table, i);
+				return ;
 			}
 			pthread_mutex_unlock(&table->philo_data[i]->data_mutex);
 			i++;
 		}
-		if (table->dead == 1)
-			break ;
 	}
 }
 

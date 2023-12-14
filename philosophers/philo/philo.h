@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:29:04 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/12/14 11:33:26 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/12/14 17:53:10 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,18 @@ typedef struct s_philo {
 	int				t_die;
 	int				t_eat;
 	int				t_sleep;
-	int				n_eat; //numero de veces que tiene que comer
-	int				eaten; //numero de veces que ha comido
-	time_t			last_eat; //el ultimo momento en el que comio
-	int				*full; //same for all filos
-	int				*dead; //same for all filos
+	int				n_eat;
+	int				eaten;
+	time_t			last_eat;
+	int				*full;
+	int				*dead;
 
 	int				*fork[2];
-	pthread_mutex_t	*right; //for fork[0] 
-	pthread_mutex_t	left; //for fork[1] (mine)
-	pthread_mutex_t	data_mutex; //for last_eat
-	pthread_mutex_t *full_mutex; //for full
-	pthread_mutex_t	*dead_mutex; //for dead
+	pthread_mutex_t	*right;
+	pthread_mutex_t	left;
+	pthread_mutex_t	data_mutex;
+	pthread_mutex_t	*full_mutex;
+	pthread_mutex_t	*dead_mutex;
 }					t_philo;
 
 typedef struct s_table{
@@ -50,13 +50,13 @@ typedef struct s_table{
 	int				t_sleep;
 	int				n_eat;
 
-	int				dead;//Whether theres a dead filo or not
-	int				full; //number of full filos, the ones that have eaten n_eat times
+	int				dead;
+	int				full;
 	int				start;
 
 	pthread_mutex_t	dead_mutex;
 	pthread_mutex_t	full_mutex;
-	t_philo			**philo_data; //to access last_eaten
+	t_philo			**philo_data;
 }					t_table;
 
 void	*philo_routine(void *t_philo);
@@ -69,14 +69,13 @@ int		eat(t_philo *philo);
 void	think(t_philo *philo);
 void	sleep_(t_philo *philo);
 
-void		print_and_wait(char c, int id, time_t t_start, time_t wait_time);
-int			check_dead(t_philo *philo);
-time_t		ft_time(void);
+void	print_and_wait(char c, int id, time_t t_start, time_t wait_time);
+int		check_dead(t_philo *philo);
+time_t	ft_time(void);
 
-void	check_data(t_table *table, int argc);
+int		check_data(t_table *table, int argc);
 int		ft_err_atoi(const char *str);
 int		ft_isspace(int c);
 size_t	ft_strlen(const char *s);
-
 
 #endif
