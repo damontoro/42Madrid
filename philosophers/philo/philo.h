@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:29:04 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/08/10 12:51:14 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/12/14 11:33:26 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <string.h>
 
 //18 * 8 bytes 144 bytes	
-typedef struct s_filo {
+typedef struct s_philo {
 	int				id;
 	time_t			t_start;
 	int				t_die;
@@ -54,7 +54,6 @@ typedef struct s_table{
 	int				full; //number of full filos, the ones that have eaten n_eat times
 	int				start;
 
-	pthread_mutex_t	*print;
 	pthread_mutex_t	dead_mutex;
 	pthread_mutex_t	full_mutex;
 	t_philo			**philo_data; //to access last_eaten
@@ -62,6 +61,7 @@ typedef struct s_table{
 
 void	*philo_routine(void *t_philo);
 void	monitor(t_table *table);
+void	free_table(t_table *table);
 
 int		take_forks(t_philo *philo);
 void	release_forks(t_philo *philo);

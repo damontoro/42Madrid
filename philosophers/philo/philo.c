@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 10:58:40 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/08/10 13:13:06 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/12/14 11:30:16 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ void	launch_threads(t_table table)
 		pthread_join(threads[i], 0);
 		i++;
 	}
+	free(threads);
+	free_table(&table);
 }
 
 t_table	parse_table(int argc, char **argv)
@@ -143,7 +145,7 @@ t_philo	**ini_philos(t_table table)
 	t_philo	**ret;
 	int			i;
 
-	ret = malloc(table.n_philo * sizeof(t_philo));
+	ret = malloc(table.n_philo * sizeof(t_philo *));
 	i = 0;
 	while (i < table.n_philo)
 	{

@@ -6,7 +6,7 @@
 /*   By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:57:52 by dmontoro          #+#    #+#             */
-/*   Updated: 2023/08/10 13:13:00 by dmontoro         ###   ########.fr       */
+/*   Updated: 2023/12/14 11:33:29 by dmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	monitor(t_table *table)
 			break ;
 		}
 		pthread_mutex_unlock(&table->full_mutex);
-
 		while(i < table->n_philo)
 		{
 			pthread_mutex_lock(&table->philo_data[i]->data_mutex);
@@ -80,4 +79,22 @@ void	monitor(t_table *table)
 		if (table->dead == 1)
 			break ;
 	}
+}
+
+void	free_table(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (i < table->n_philo)
+	{
+		pthread_mutex_destroy(&table->philo_data[i]->left);
+		pthread_mutex_destroy(&table->philo_data[i]->data_mutex);
+		free(table->philo_data[i]->fork[1]);
+		free(table->philo_data[i]);
+		i++;
+	}
+	free(table->philo_data);
+	pthread_mutex_destroy(&table->dead_mutex);
+	pthread_mutex_destroy(&table->full_mutex);
 }

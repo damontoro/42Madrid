@@ -6,7 +6,7 @@
 #    By: dmontoro <dmontoro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/23 10:54:46 by dmontoro          #+#    #+#              #
-#    Updated: 2023/08/10 08:10:58 by dmontoro         ###   ########.fr        #
+#    Updated: 2023/12/14 11:34:00 by dmontoro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= philo
 
 CC	= gcc
 
-CFLAGS	= -g3 -O0 -Wall -Werror -Wextra  #-fsanitize=thread #-fsanitize=address
+CFLAGS	= -g3 -O0 -pthread -Wall -Werror -Wextra  #-fsanitize=thread #-fsanitize=address
 
 RM	= rm -f
 
